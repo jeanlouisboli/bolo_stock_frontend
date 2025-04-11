@@ -1,0 +1,1 @@
+# bolo_stock_frontend
