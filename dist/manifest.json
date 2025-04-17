@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Bolo Stock - Clearance Finder",
+  "version": "1.0.0",
+  "description": "Find and order clearance products from nearby supermarkets",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "notifications",
+    "geolocation"
+  ],
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval' http://localhost:*; object-src 'self'; connect-src 'self' http://localhost:* ws://localhost:*"
+  },
+  "host_permissions": [
+    "http://localhost/*",
+    "ws://localhost/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "assets/*",
+        "*.js",
+        "*.ts"
+      ],
+      "use_dynamic_url": true
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "app": {
+    "title": "Bolo Stock - Clearance Finder",
+    "description": "Find and order discounted products from nearby supermarkets"
+  },
+  "common": {
+    "search": "Search",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close"
+  },
+  "products": {
+    "clearance": "On Clearance",
+    "nearby": "Nearby",
+    "noResults": "No products found",
+    "price": "Price",
+    "originalPrice": "Original Price",
+    "discount": "Discount"
+  },
+  "location": {
+    "enable": "Enable Location",
+    "searching": "Searching for nearby stores...",
+    "notFound": "No stores found nearby"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "notifications": "Notifications",
+    "radius": "Search Radius"
+  }
+} 

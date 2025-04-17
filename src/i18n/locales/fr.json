@@ -1,0 +1,32 @@
+{
+  "app": {
+    "title": "Bolo Stock - Recherche de Promotions",
+    "description": "Trouvez et commandez des produits en promotion dans les supermarchés à proximité"
+  },
+  "common": {
+    "search": "Rechercher",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "close": "Fermer"
+  },
+  "products": {
+    "clearance": "En promotion",
+    "nearby": "À proximité",
+    "noResults": "Aucun produit trouvé",
+    "price": "Prix",
+    "originalPrice": "Prix initial",
+    "discount": "Réduction"
+  },
+  "location": {
+    "enable": "Activer la localisation",
+    "searching": "Recherche des magasins à proximité...",
+    "notFound": "Aucun magasin trouvé à proximité"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "notifications": "Notifications",
+    "radius": "Rayon de recherche"
+  }
+} 
