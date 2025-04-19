@@ -27,6 +27,28 @@ export interface nutritionalInfo {
   carbs: number;
   fat: number;
 }
+
+export type OrderStatus =
+  | "pending" // Order placed but not confirmed
+  | "confirmed" // Order confirmed by supermarket
+  | "preparing" // Order being prepared
+  | "ready" // Ready for pickup
+  | "completed" // Order picked up
+  | "cancelled"; // Order cancelled
+
+export interface Order {
+  id: string;
+  code: string; // Order tracking code
+  product: Product;
+  quantity: number;
+  status: OrderStatus;
+  orderDate: string;
+  totalPrice: number;
+  estimatedPickupTime?: string;
+  pickupLocation: string;
+  customerNotes?: string;
+}
+
 export interface Alert {
   id: string;
   productName: string;
@@ -35,6 +57,7 @@ export interface Alert {
   priceThreshold: number;
   isActive: boolean;
 }
+
 export interface Supermarket {
   id: string;
   name: string;

@@ -7027,75 +7027,6 @@ var m = reactDomExports;
   client.createRoot = m.createRoot;
   client.hydrateRoot = m.hydrateRoot;
 }
-const supermarkets = ["Carrefour", "Auchan", "Casino", "Leader Price"];
-const productNames = [
-  "Yaourt Nature",
-  "Lait Demi-écrémé",
-  "Fromage Blanc",
-  "Beurre Doux",
-  "Crème Fraîche",
-  "Œufs Bio",
-  "Pain de Mie",
-  "Jambon Blanc",
-  "Poulet Rôti",
-  "Saumon Fumé"
-];
-function generateMockProducts(count2) {
-  return Array.from({ length: count2 }, (_, index) => ({
-    id: `product-${index + 1}`,
-    name: `${productNames[index % productNames.length]} ${Math.floor(index / productNames.length) + 1}`,
-    image: `https://picsum.photos/seed/${index + 1}/200/200`,
-    supermarket: supermarkets[index % supermarkets.length],
-    originalPrice: Math.floor(Math.random() * 5e3) + 1e3,
-    discount: Math.floor(Math.random() * 50) + 10,
-    description: `Description du produit ${index + 1}`,
-    supermarketLocation: {
-      address: `123 Main St`,
-      distance: 1.2
-    },
-    storageInstructions: `Instructions de stockage du produit ${index + 1}`,
-    nutritionalInfo: {
-      calories: Math.floor(Math.random() * 100) + 100,
-      protein: Math.floor(Math.random() * 10) + 1,
-      carbs: Math.floor(Math.random() * 10) + 1,
-      fat: Math.floor(Math.random() * 10) + 1
-    },
-    allergens: [`Allergène ${index + 1}`],
-    ingredients: [`Ingrédient ${index + 1}`],
-    stock: Math.floor(Math.random() * 100) + 1,
-    expiryDate: new Date(
-      Date.now() + Math.random() * 7 * 24 * 60 * 60 * 1e3
-    ).toLocaleDateString(),
-    get clearancePrice() {
-      return Math.floor(this.originalPrice * (1 - this.discount / 100));
-    }
-  }));
-}
-const mockProducts = generateMockProducts(50);
-const fetchProducts = async (page, limit = 10) => {
-  await new Promise((resolve) => setTimeout(resolve, 1e3));
-  const start = page * limit;
-  const end = start + limit;
-  return mockProducts.slice(start, end);
-};
-const mockAlerts = [
-  {
-    id: "1",
-    productName: "Yaourt Nature",
-    category: "Produits Laitiers",
-    supermarket: "Carrefour",
-    priceThreshold: 500,
-    isActive: true
-  },
-  {
-    id: "2",
-    productName: "Pain de Mie",
-    category: "Boulangerie",
-    supermarket: "Auchan",
-    priceThreshold: 800,
-    isActive: false
-  }
-];
 const LayoutGroupContext = reactExports.createContext({});
 function useConstant(init) {
   const ref = reactExports.useRef(null);
@@ -14432,6 +14363,16 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
+const Bell = createLucideIcon("Bell", [
+  ["path", { d: "M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9", key: "1qo2s2" }],
+  ["path", { d: "M10.3 21a1.94 1.94 0 0 0 3.4 0", key: "qgo35s" }]
+]);
+/**
+ * @license lucide-react v0.344.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
 const Check = createLucideIcon("Check", [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]]);
 /**
  * @license lucide-react v0.344.0 - ISC
@@ -14442,6 +14383,16 @@ const Check = createLucideIcon("Check", [["path", { d: "M20 6 9 17l-5-5", key: "
 const Clock = createLucideIcon("Clock", [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["polyline", { points: "12 6 12 12 16 14", key: "68esgv" }]
+]);
+/**
+ * @license lucide-react v0.344.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Copy = createLucideIcon("Copy", [
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
 ]);
 /**
  * @license lucide-react v0.344.0 - ISC
@@ -14488,6 +14439,16 @@ const Package = createLucideIcon("Package", [
   ],
   ["path", { d: "m3.3 7 8.7 5 8.7-5", key: "g66t2b" }],
   ["path", { d: "M12 22V12", key: "d0xqtd" }]
+]);
+/**
+ * @license lucide-react v0.344.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const Plus = createLucideIcon("Plus", [
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
 ]);
 /**
  * @license lucide-react v0.344.0 - ISC
@@ -17094,7 +17055,7 @@ const getDefaultConfig = () => {
   };
 };
 const twMerge = /* @__PURE__ */ createTailwindMerge(getDefaultConfig);
-function cn(...inputs) {
+function cn$1(...inputs) {
   return twMerge(clsx(inputs));
 }
 const buttonVariants = cva(
@@ -17127,7 +17088,7 @@ const Button = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       "button",
       {
-        className: cn(buttonVariants({ variant, size, className })),
+        className: cn$1(buttonVariants({ variant, size, className })),
         ref,
         ...props
       }
@@ -17135,48 +17096,1328 @@ const Button = reactExports.forwardRef(
   }
 );
 Button.displayName = "Button";
-function composeEventHandlers(originalEventHandler, ourEventHandler, { checkForDefaultPrevented = true } = {}) {
-  return function handleEvent(event) {
-    originalEventHandler == null ? void 0 : originalEventHandler(event);
-    if (checkForDefaultPrevented === false || !event.defaultPrevented) {
-      return ourEventHandler == null ? void 0 : ourEventHandler(event);
+const initialState = {
+  theme: "light",
+  setTheme: () => null
+};
+const ThemeProviderContext = reactExports.createContext(initialState);
+function ThemeProvider({
+  children,
+  defaultTheme = "light",
+  storageKey = "bolo-ui-theme",
+  ...props
+}) {
+  const [theme, setTheme] = reactExports.useState(
+    () => localStorage.getItem(storageKey) || defaultTheme
+  );
+  reactExports.useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
+  }, [theme]);
+  const value = {
+    theme,
+    setTheme: (theme2) => {
+      localStorage.setItem(storageKey, theme2);
+      setTheme(theme2);
     }
   };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeProviderContext.Provider, { ...props, value, children });
 }
-function setRef(ref, value) {
-  if (typeof ref === "function") {
-    return ref(value);
-  } else if (ref !== null && ref !== void 0) {
-    ref.current = value;
+const useTheme = () => {
+  const context = reactExports.useContext(ThemeProviderContext);
+  if (context === void 0)
+    throw new Error("useTheme must be used within a ThemeProvider");
+  return context;
+};
+const AppLayout = ({ children }) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex h-[500px] w-[350px] flex-col overflow-hidden bg-background text-foreground", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-1 overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex flex-1 flex-col overflow-y-auto px-2 py-1", children }) }) });
+};
+const supermarkets = ["Carrefour", "Auchan", "Casino", "Leader Price"];
+const productNames = [
+  "Yaourt Nature",
+  "Lait Demi-écrémé",
+  "Fromage Blanc",
+  "Beurre Doux",
+  "Crème Fraîche",
+  "Œufs Bio",
+  "Pain de Mie",
+  "Jambon Blanc",
+  "Poulet Rôti",
+  "Saumon Fumé"
+];
+function generateMockProducts(count2) {
+  return Array.from({ length: count2 }, (_, index) => ({
+    id: `product-${index + 1}`,
+    name: `${productNames[index % productNames.length]} ${Math.floor(index / productNames.length) + 1}`,
+    image: `https://picsum.photos/seed/${index + 1}/200/200`,
+    supermarket: supermarkets[index % supermarkets.length],
+    originalPrice: Math.floor(Math.random() * 5e3) + 1e3,
+    discount: Math.floor(Math.random() * 50) + 10,
+    description: `Description du produit ${index + 1}`,
+    supermarketLocation: {
+      address: `123 Main St`,
+      distance: 1.2
+    },
+    storageInstructions: `Instructions de stockage du produit ${index + 1}`,
+    nutritionalInfo: {
+      calories: Math.floor(Math.random() * 100) + 100,
+      protein: Math.floor(Math.random() * 10) + 1,
+      carbs: Math.floor(Math.random() * 10) + 1,
+      fat: Math.floor(Math.random() * 10) + 1
+    },
+    allergens: [`Allergène ${index + 1}`],
+    ingredients: [`Ingrédient ${index + 1}`],
+    stock: Math.floor(Math.random() * 100) + 1,
+    expiryDate: new Date(
+      Date.now() + Math.random() * 7 * 24 * 60 * 60 * 1e3
+    ).toLocaleDateString(),
+    get clearancePrice() {
+      return Math.floor(this.originalPrice * (1 - this.discount / 100));
+    }
+  }));
+}
+const mockProducts = generateMockProducts(50);
+const fetchProducts = async (page, limit = 10) => {
+  await new Promise((resolve) => setTimeout(resolve, 1e3));
+  const start = page * limit;
+  const end = start + limit;
+  return mockProducts.slice(start, end);
+};
+function generateOrderCode() {
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  return Array.from(
+    { length: 8 },
+    () => characters[Math.floor(Math.random() * characters.length)]
+  ).join("");
+}
+function generateMockOrders(products) {
+  const statuses = [
+    "pending",
+    "confirmed",
+    "preparing",
+    "ready",
+    "completed",
+    "cancelled"
+  ];
+  return Array.from({ length: 15 }, (_, index) => {
+    const product = products[Math.floor(Math.random() * products.length)];
+    const quantity = Math.floor(Math.random() * 3) + 1;
+    const status = statuses[Math.floor(Math.random() * (statuses.length - 1))];
+    const orderDate = new Date(
+      Date.now() - Math.random() * 7 * 24 * 60 * 60 * 1e3
+    );
+    return {
+      id: `order-${index + 1}`,
+      code: generateOrderCode(),
+      product,
+      quantity,
+      status,
+      orderDate: orderDate.toLocaleString(),
+      totalPrice: product.clearancePrice * quantity,
+      estimatedPickupTime: status !== "cancelled" ? new Date(orderDate.getTime() + 2 * 60 * 60 * 1e3).toLocaleString() : void 0,
+      pickupLocation: product.supermarketLocation.address,
+      customerNotes: Math.random() > 0.7 ? "Please handle with care" : void 0
+    };
+  });
+}
+const mockOrders = generateMockOrders(mockProducts);
+const fetchOrders = async (page, limit = 5) => {
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  const start = page * limit;
+  const end = start + limit;
+  return mockOrders.slice(start, end);
+};
+const cancelOrder = async (orderId) => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const orderIndex = mockOrders.findIndex((order2) => order2.id === orderId);
+  if (orderIndex === -1) {
+    throw new Error("Order not found");
+  }
+  const order = mockOrders[orderIndex];
+  if (order.status !== "pending") {
+    throw new Error("Only pending orders can be cancelled");
+  }
+  const updatedOrder = { ...order, status: "cancelled" };
+  mockOrders[orderIndex] = updatedOrder;
+  return updatedOrder;
+};
+const ProductList = ({ onOrder }) => {
+  const [products, setProducts] = reactExports.useState([]);
+  const [page, setPage] = reactExports.useState(0);
+  const [loading, setLoading] = reactExports.useState(false);
+  const [hasMore, setHasMore] = reactExports.useState(true);
+  const observer = reactExports.useRef(null);
+  const lastProductRef = reactExports.useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prev) => prev + 1);
+        }
+      });
+      if (node) {
+        observer.current.observe(node);
+      }
+    },
+    [loading, hasMore]
+  );
+  reactExports.useEffect(() => {
+    const loadProducts = async () => {
+      setLoading(true);
+      try {
+        const newProducts = await fetchProducts(page);
+        setProducts((prev) => [...prev, ...newProducts]);
+        setHasMore(newProducts.length === 10);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProducts();
+  }, [page]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0, y: 10 },
+      animate: { opacity: 1, y: 0 },
+      exit: { opacity: 0, y: -10 },
+      className: "grid grid-cols-1 gap-4",
+      children: [
+        products.map((product, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          motion.div,
+          {
+            ref: index === products.length - 1 ? lastProductRef : null,
+            layout: true,
+            className: "group relative overflow-hidden rounded-lg border bg-surface p-3 transition-shadow hover:shadow-lg dark:bg-surface-dark",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-20 w-20 overflow-hidden rounded-md", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "img",
+                  {
+                    src: product.image,
+                    alt: product.name,
+                    className: "h-full w-full object-cover transition-transform group-hover:scale-105"
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-1 flex-col justify-between", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-semibold", children: product.name }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mt-1", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: product.supermarket }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary dark:text-primary-dark flex items-center gap-1", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(TrendingDown, { className: "h-3 w-3" }),
+                        product.discount,
+                        "%"
+                      ] })
+                    ] })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs line-through text-muted-foreground", children: [
+                        product.originalPrice,
+                        " FCFA"
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm font-bold text-primary dark:text-primary-dark", children: [
+                        product.clearancePrice,
+                        " FCFA"
+                      ] })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground", children: [
+                      "Expire le: ",
+                      product.expiryDate
+                    ] })
+                  ] })
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  className: "mt-2 w-full",
+                  size: "sm",
+                  onClick: () => onOrder(product),
+                  children: "Commander"
+                }
+              )
+            ]
+          },
+          product.id
+        )),
+        loading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center py-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Loader2, { className: "h-6 w-6 animate-spin text-primary" }) })
+      ]
+    }
+  );
+};
+function __insertCSS(code) {
+  if (typeof document == "undefined") return;
+  let head = document.head || document.getElementsByTagName("head")[0];
+  let style = document.createElement("style");
+  style.type = "text/css";
+  head.appendChild(style);
+  style.styleSheet ? style.styleSheet.cssText = code : style.appendChild(document.createTextNode(code));
+}
+const getAsset = (type) => {
+  switch (type) {
+    case "success":
+      return SuccessIcon;
+    case "info":
+      return InfoIcon;
+    case "warning":
+      return WarningIcon;
+    case "error":
+      return ErrorIcon;
+    default:
+      return null;
+  }
+};
+const bars = Array(12).fill(0);
+const Loader = ({ visible, className }) => {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: [
+      "sonner-loading-wrapper",
+      className
+    ].filter(Boolean).join(" "),
+    "data-visible": visible
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: "sonner-spinner"
+  }, bars.map((_, i) => /* @__PURE__ */ React.createElement("div", {
+    className: "sonner-loading-bar",
+    key: `spinner-bar-${i}`
+  }))));
+};
+const SuccessIcon = /* @__PURE__ */ React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 20 20",
+  fill: "currentColor",
+  height: "20",
+  width: "20"
+}, /* @__PURE__ */ React.createElement("path", {
+  fillRule: "evenodd",
+  d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z",
+  clipRule: "evenodd"
+}));
+const WarningIcon = /* @__PURE__ */ React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24",
+  fill: "currentColor",
+  height: "20",
+  width: "20"
+}, /* @__PURE__ */ React.createElement("path", {
+  fillRule: "evenodd",
+  d: "M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z",
+  clipRule: "evenodd"
+}));
+const InfoIcon = /* @__PURE__ */ React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 20 20",
+  fill: "currentColor",
+  height: "20",
+  width: "20"
+}, /* @__PURE__ */ React.createElement("path", {
+  fillRule: "evenodd",
+  d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z",
+  clipRule: "evenodd"
+}));
+const ErrorIcon = /* @__PURE__ */ React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 20 20",
+  fill: "currentColor",
+  height: "20",
+  width: "20"
+}, /* @__PURE__ */ React.createElement("path", {
+  fillRule: "evenodd",
+  d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z",
+  clipRule: "evenodd"
+}));
+const CloseIcon = /* @__PURE__ */ React.createElement("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  width: "12",
+  height: "12",
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "1.5",
+  strokeLinecap: "round",
+  strokeLinejoin: "round"
+}, /* @__PURE__ */ React.createElement("line", {
+  x1: "18",
+  y1: "6",
+  x2: "6",
+  y2: "18"
+}), /* @__PURE__ */ React.createElement("line", {
+  x1: "6",
+  y1: "6",
+  x2: "18",
+  y2: "18"
+}));
+const useIsDocumentHidden = () => {
+  const [isDocumentHidden, setIsDocumentHidden] = React.useState(document.hidden);
+  React.useEffect(() => {
+    const callback = () => {
+      setIsDocumentHidden(document.hidden);
+    };
+    document.addEventListener("visibilitychange", callback);
+    return () => window.removeEventListener("visibilitychange", callback);
+  }, []);
+  return isDocumentHidden;
+};
+let toastsCounter = 1;
+class Observer {
+  constructor() {
+    this.subscribe = (subscriber) => {
+      this.subscribers.push(subscriber);
+      return () => {
+        const index = this.subscribers.indexOf(subscriber);
+        this.subscribers.splice(index, 1);
+      };
+    };
+    this.publish = (data) => {
+      this.subscribers.forEach((subscriber) => subscriber(data));
+    };
+    this.addToast = (data) => {
+      this.publish(data);
+      this.toasts = [
+        ...this.toasts,
+        data
+      ];
+    };
+    this.create = (data) => {
+      var _data_id;
+      const { message, ...rest } = data;
+      const id2 = typeof (data == null ? void 0 : data.id) === "number" || ((_data_id = data.id) == null ? void 0 : _data_id.length) > 0 ? data.id : toastsCounter++;
+      const alreadyExists = this.toasts.find((toast2) => {
+        return toast2.id === id2;
+      });
+      const dismissible = data.dismissible === void 0 ? true : data.dismissible;
+      if (this.dismissedToasts.has(id2)) {
+        this.dismissedToasts.delete(id2);
+      }
+      if (alreadyExists) {
+        this.toasts = this.toasts.map((toast2) => {
+          if (toast2.id === id2) {
+            this.publish({
+              ...toast2,
+              ...data,
+              id: id2,
+              title: message
+            });
+            return {
+              ...toast2,
+              ...data,
+              id: id2,
+              dismissible,
+              title: message
+            };
+          }
+          return toast2;
+        });
+      } else {
+        this.addToast({
+          title: message,
+          ...rest,
+          dismissible,
+          id: id2
+        });
+      }
+      return id2;
+    };
+    this.dismiss = (id2) => {
+      if (id2) {
+        this.dismissedToasts.add(id2);
+        requestAnimationFrame(() => this.subscribers.forEach((subscriber) => subscriber({
+          id: id2,
+          dismiss: true
+        })));
+      } else {
+        this.toasts.forEach((toast2) => {
+          this.subscribers.forEach((subscriber) => subscriber({
+            id: toast2.id,
+            dismiss: true
+          }));
+        });
+      }
+      return id2;
+    };
+    this.message = (message, data) => {
+      return this.create({
+        ...data,
+        message
+      });
+    };
+    this.error = (message, data) => {
+      return this.create({
+        ...data,
+        message,
+        type: "error"
+      });
+    };
+    this.success = (message, data) => {
+      return this.create({
+        ...data,
+        type: "success",
+        message
+      });
+    };
+    this.info = (message, data) => {
+      return this.create({
+        ...data,
+        type: "info",
+        message
+      });
+    };
+    this.warning = (message, data) => {
+      return this.create({
+        ...data,
+        type: "warning",
+        message
+      });
+    };
+    this.loading = (message, data) => {
+      return this.create({
+        ...data,
+        type: "loading",
+        message
+      });
+    };
+    this.promise = (promise, data) => {
+      if (!data) {
+        return;
+      }
+      let id2 = void 0;
+      if (data.loading !== void 0) {
+        id2 = this.create({
+          ...data,
+          promise,
+          type: "loading",
+          message: data.loading,
+          description: typeof data.description !== "function" ? data.description : void 0
+        });
+      }
+      const p2 = Promise.resolve(promise instanceof Function ? promise() : promise);
+      let shouldDismiss = id2 !== void 0;
+      let result;
+      const originalPromise = p2.then(async (response) => {
+        result = [
+          "resolve",
+          response
+        ];
+        const isReactElementResponse = React.isValidElement(response);
+        if (isReactElementResponse) {
+          shouldDismiss = false;
+          this.create({
+            id: id2,
+            type: "default",
+            message: response
+          });
+        } else if (isHttpResponse(response) && !response.ok) {
+          shouldDismiss = false;
+          const promiseData = typeof data.error === "function" ? await data.error(`HTTP error! status: ${response.status}`) : data.error;
+          const description = typeof data.description === "function" ? await data.description(`HTTP error! status: ${response.status}`) : data.description;
+          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const toastSettings = isExtendedResult ? promiseData : {
+            message: promiseData
+          };
+          this.create({
+            id: id2,
+            type: "error",
+            description,
+            ...toastSettings
+          });
+        } else if (response instanceof Error) {
+          shouldDismiss = false;
+          const promiseData = typeof data.error === "function" ? await data.error(response) : data.error;
+          const description = typeof data.description === "function" ? await data.description(response) : data.description;
+          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const toastSettings = isExtendedResult ? promiseData : {
+            message: promiseData
+          };
+          this.create({
+            id: id2,
+            type: "error",
+            description,
+            ...toastSettings
+          });
+        } else if (data.success !== void 0) {
+          shouldDismiss = false;
+          const promiseData = typeof data.success === "function" ? await data.success(response) : data.success;
+          const description = typeof data.description === "function" ? await data.description(response) : data.description;
+          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const toastSettings = isExtendedResult ? promiseData : {
+            message: promiseData
+          };
+          this.create({
+            id: id2,
+            type: "success",
+            description,
+            ...toastSettings
+          });
+        }
+      }).catch(async (error) => {
+        result = [
+          "reject",
+          error
+        ];
+        if (data.error !== void 0) {
+          shouldDismiss = false;
+          const promiseData = typeof data.error === "function" ? await data.error(error) : data.error;
+          const description = typeof data.description === "function" ? await data.description(error) : data.description;
+          const isExtendedResult = typeof promiseData === "object" && !React.isValidElement(promiseData);
+          const toastSettings = isExtendedResult ? promiseData : {
+            message: promiseData
+          };
+          this.create({
+            id: id2,
+            type: "error",
+            description,
+            ...toastSettings
+          });
+        }
+      }).finally(() => {
+        if (shouldDismiss) {
+          this.dismiss(id2);
+          id2 = void 0;
+        }
+        data.finally == null ? void 0 : data.finally.call(data);
+      });
+      const unwrap = () => new Promise((resolve, reject) => originalPromise.then(() => result[0] === "reject" ? reject(result[1]) : resolve(result[1])).catch(reject));
+      if (typeof id2 !== "string" && typeof id2 !== "number") {
+        return {
+          unwrap
+        };
+      } else {
+        return Object.assign(id2, {
+          unwrap
+        });
+      }
+    };
+    this.custom = (jsx, data) => {
+      const id2 = (data == null ? void 0 : data.id) || toastsCounter++;
+      this.create({
+        jsx: jsx(id2),
+        id: id2,
+        ...data
+      });
+      return id2;
+    };
+    this.getActiveToasts = () => {
+      return this.toasts.filter((toast2) => !this.dismissedToasts.has(toast2.id));
+    };
+    this.subscribers = [];
+    this.toasts = [];
+    this.dismissedToasts = /* @__PURE__ */ new Set();
   }
 }
-function composeRefs(...refs) {
-  return (node) => {
-    let hasCleanup = false;
-    const cleanups = refs.map((ref) => {
-      const cleanup = setRef(ref, node);
-      if (!hasCleanup && typeof cleanup == "function") {
-        hasCleanup = true;
+const ToastState = new Observer();
+const toastFunction = (message, data) => {
+  const id2 = (data == null ? void 0 : data.id) || toastsCounter++;
+  ToastState.addToast({
+    title: message,
+    ...data,
+    id: id2
+  });
+  return id2;
+};
+const isHttpResponse = (data) => {
+  return data && typeof data === "object" && "ok" in data && typeof data.ok === "boolean" && "status" in data && typeof data.status === "number";
+};
+const basicToast = toastFunction;
+const getHistory = () => ToastState.toasts;
+const getToasts = () => ToastState.getActiveToasts();
+const toast = Object.assign(basicToast, {
+  success: ToastState.success,
+  info: ToastState.info,
+  warning: ToastState.warning,
+  error: ToastState.error,
+  custom: ToastState.custom,
+  message: ToastState.message,
+  promise: ToastState.promise,
+  dismiss: ToastState.dismiss,
+  loading: ToastState.loading
+}, {
+  getHistory,
+  getToasts
+});
+__insertCSS("[data-sonner-toaster][dir=ltr],html[dir=ltr]{--toast-icon-margin-start:-3px;--toast-icon-margin-end:4px;--toast-svg-margin-start:-1px;--toast-svg-margin-end:0px;--toast-button-margin-start:auto;--toast-button-margin-end:0;--toast-close-button-start:0;--toast-close-button-end:unset;--toast-close-button-transform:translate(-35%, -35%)}[data-sonner-toaster][dir=rtl],html[dir=rtl]{--toast-icon-margin-start:4px;--toast-icon-margin-end:-3px;--toast-svg-margin-start:0px;--toast-svg-margin-end:-1px;--toast-button-margin-start:0;--toast-button-margin-end:auto;--toast-close-button-start:unset;--toast-close-button-end:0;--toast-close-button-transform:translate(35%, -35%)}[data-sonner-toaster]{position:fixed;width:var(--width);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;--gray1:hsl(0, 0%, 99%);--gray2:hsl(0, 0%, 97.3%);--gray3:hsl(0, 0%, 95.1%);--gray4:hsl(0, 0%, 93%);--gray5:hsl(0, 0%, 90.9%);--gray6:hsl(0, 0%, 88.7%);--gray7:hsl(0, 0%, 85.8%);--gray8:hsl(0, 0%, 78%);--gray9:hsl(0, 0%, 56.1%);--gray10:hsl(0, 0%, 52.3%);--gray11:hsl(0, 0%, 43.5%);--gray12:hsl(0, 0%, 9%);--border-radius:8px;box-sizing:border-box;padding:0;margin:0;list-style:none;outline:0;z-index:999999999;transition:transform .4s ease}[data-sonner-toaster][data-lifted=true]{transform:translateY(-8px)}@media (hover:none) and (pointer:coarse){[data-sonner-toaster][data-lifted=true]{transform:none}}[data-sonner-toaster][data-x-position=right]{right:var(--offset-right)}[data-sonner-toaster][data-x-position=left]{left:var(--offset-left)}[data-sonner-toaster][data-x-position=center]{left:50%;transform:translateX(-50%)}[data-sonner-toaster][data-y-position=top]{top:var(--offset-top)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--offset-bottom)}[data-sonner-toast]{--y:translateY(100%);--lift-amount:calc(var(--lift) * var(--gap));z-index:var(--z-index);position:absolute;opacity:0;transform:var(--y);touch-action:none;transition:transform .4s,opacity .4s,height .4s,box-shadow .2s;box-sizing:border-box;outline:0;overflow-wrap:anywhere}[data-sonner-toast][data-styled=true]{padding:16px;background:var(--normal-bg);border:1px solid var(--normal-border);color:var(--normal-text);border-radius:var(--border-radius);box-shadow:0 4px 12px rgba(0,0,0,.1);width:var(--width);font-size:13px;display:flex;align-items:center;gap:6px}[data-sonner-toast]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-y-position=top]{top:0;--y:translateY(-100%);--lift:1;--lift-amount:calc(1 * var(--gap))}[data-sonner-toast][data-y-position=bottom]{bottom:0;--y:translateY(100%);--lift:-1;--lift-amount:calc(var(--lift) * var(--gap))}[data-sonner-toast][data-styled=true] [data-description]{font-weight:400;line-height:1.4;color:#3f3f3f}[data-rich-colors=true][data-sonner-toast][data-styled=true] [data-description]{color:inherit}[data-sonner-toaster][data-sonner-theme=dark] [data-description]{color:#e8e8e8}[data-sonner-toast][data-styled=true] [data-title]{font-weight:500;line-height:1.5;color:inherit}[data-sonner-toast][data-styled=true] [data-icon]{display:flex;height:16px;width:16px;position:relative;justify-content:flex-start;align-items:center;flex-shrink:0;margin-left:var(--toast-icon-margin-start);margin-right:var(--toast-icon-margin-end)}[data-sonner-toast][data-promise=true] [data-icon]>svg{opacity:0;transform:scale(.8);transform-origin:center;animation:sonner-fade-in .3s ease forwards}[data-sonner-toast][data-styled=true] [data-icon]>*{flex-shrink:0}[data-sonner-toast][data-styled=true] [data-icon] svg{margin-left:var(--toast-svg-margin-start);margin-right:var(--toast-svg-margin-end)}[data-sonner-toast][data-styled=true] [data-content]{display:flex;flex-direction:column;gap:2px}[data-sonner-toast][data-styled=true] [data-button]{border-radius:4px;padding-left:8px;padding-right:8px;height:24px;font-size:12px;color:var(--normal-bg);background:var(--normal-text);margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end);border:none;font-weight:500;cursor:pointer;outline:0;display:flex;align-items:center;flex-shrink:0;transition:opacity .4s,box-shadow .2s}[data-sonner-toast][data-styled=true] [data-button]:focus-visible{box-shadow:0 0 0 2px rgba(0,0,0,.4)}[data-sonner-toast][data-styled=true] [data-button]:first-of-type{margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end)}[data-sonner-toast][data-styled=true] [data-cancel]{color:var(--normal-text);background:rgba(0,0,0,.08)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-styled=true] [data-cancel]{background:rgba(255,255,255,.3)}[data-sonner-toast][data-styled=true] [data-close-button]{position:absolute;left:var(--toast-close-button-start);right:var(--toast-close-button-end);top:0;height:20px;width:20px;display:flex;justify-content:center;align-items:center;padding:0;color:var(--gray12);background:var(--normal-bg);border:1px solid var(--gray4);transform:var(--toast-close-button-transform);border-radius:50%;cursor:pointer;z-index:1;transition:opacity .1s,background .2s,border-color .2s}[data-sonner-toast][data-styled=true] [data-close-button]:focus-visible{box-shadow:0 4px 12px rgba(0,0,0,.1),0 0 0 2px rgba(0,0,0,.2)}[data-sonner-toast][data-styled=true] [data-disabled=true]{cursor:not-allowed}[data-sonner-toast][data-styled=true]:hover [data-close-button]:hover{background:var(--gray2);border-color:var(--gray5)}[data-sonner-toast][data-swiping=true]::before{content:'';position:absolute;left:-100%;right:-100%;height:100%;z-index:-1}[data-sonner-toast][data-y-position=top][data-swiping=true]::before{bottom:50%;transform:scaleY(3) translateY(50%)}[data-sonner-toast][data-y-position=bottom][data-swiping=true]::before{top:50%;transform:scaleY(3) translateY(-50%)}[data-sonner-toast][data-swiping=false][data-removed=true]::before{content:'';position:absolute;inset:0;transform:scaleY(2)}[data-sonner-toast][data-expanded=true]::after{content:'';position:absolute;left:0;height:calc(var(--gap) + 1px);bottom:100%;width:100%}[data-sonner-toast][data-mounted=true]{--y:translateY(0);opacity:1}[data-sonner-toast][data-expanded=false][data-front=false]{--scale:var(--toasts-before) * 0.05 + 1;--y:translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));height:var(--front-toast-height)}[data-sonner-toast]>*{transition:opacity .4s}[data-sonner-toast][data-x-position=right]{right:0}[data-sonner-toast][data-x-position=left]{left:0}[data-sonner-toast][data-expanded=false][data-front=false][data-styled=true]>*{opacity:0}[data-sonner-toast][data-visible=false]{opacity:0;pointer-events:none}[data-sonner-toast][data-mounted=true][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset)));height:var(--initial-height)}[data-sonner-toast][data-removed=true][data-front=true][data-swipe-out=false]{--y:translateY(calc(var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=true]{--y:translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=false]{--y:translateY(40%);opacity:0;transition:transform .5s,opacity .2s}[data-sonner-toast][data-removed=true][data-front=false]::before{height:calc(var(--initial-height) + 20%)}[data-sonner-toast][data-swiping=true]{transform:var(--y) translateY(var(--swipe-amount-y,0)) translateX(var(--swipe-amount-x,0));transition:none}[data-sonner-toast][data-swiped=true]{user-select:none}[data-sonner-toast][data-swipe-out=true][data-y-position=bottom],[data-sonner-toast][data-swipe-out=true][data-y-position=top]{animation-duration:.2s;animation-timing-function:ease-out;animation-fill-mode:forwards}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=left]{animation-name:swipe-out-left}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=right]{animation-name:swipe-out-right}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=up]{animation-name:swipe-out-up}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=down]{animation-name:swipe-out-down}@keyframes swipe-out-left{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) - 100%));opacity:0}}@keyframes swipe-out-right{from{transform:var(--y) translateX(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translateX(calc(var(--swipe-amount-x) + 100%));opacity:0}}@keyframes swipe-out-up{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) - 100%));opacity:0}}@keyframes swipe-out-down{from{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) + 100%));opacity:0}}@media (max-width:600px){[data-sonner-toaster]{position:fixed;right:var(--mobile-offset-right);left:var(--mobile-offset-left);width:100%}[data-sonner-toaster][dir=rtl]{left:calc(var(--mobile-offset-left) * -1)}[data-sonner-toaster] [data-sonner-toast]{left:0;right:0;width:calc(100% - var(--mobile-offset-left) * 2)}[data-sonner-toaster][data-x-position=left]{left:var(--mobile-offset-left)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--mobile-offset-bottom)}[data-sonner-toaster][data-y-position=top]{top:var(--mobile-offset-top)}[data-sonner-toaster][data-x-position=center]{left:var(--mobile-offset-left);right:var(--mobile-offset-right);transform:none}}[data-sonner-toaster][data-sonner-theme=light]{--normal-bg:#fff;--normal-border:var(--gray4);--normal-text:var(--gray12);--success-bg:hsl(143, 85%, 96%);--success-border:hsl(145, 92%, 87%);--success-text:hsl(140, 100%, 27%);--info-bg:hsl(208, 100%, 97%);--info-border:hsl(221, 91%, 93%);--info-text:hsl(210, 92%, 45%);--warning-bg:hsl(49, 100%, 97%);--warning-border:hsl(49, 91%, 84%);--warning-text:hsl(31, 92%, 45%);--error-bg:hsl(359, 100%, 97%);--error-border:hsl(359, 100%, 94%);--error-text:hsl(360, 100%, 45%)}[data-sonner-toaster][data-sonner-theme=light] [data-sonner-toast][data-invert=true]{--normal-bg:#000;--normal-border:hsl(0, 0%, 20%);--normal-text:var(--gray1)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast][data-invert=true]{--normal-bg:#fff;--normal-border:var(--gray3);--normal-text:var(--gray12)}[data-sonner-toaster][data-sonner-theme=dark]{--normal-bg:#000;--normal-bg-hover:hsl(0, 0%, 12%);--normal-border:hsl(0, 0%, 20%);--normal-border-hover:hsl(0, 0%, 25%);--normal-text:var(--gray1);--success-bg:hsl(150, 100%, 6%);--success-border:hsl(147, 100%, 12%);--success-text:hsl(150, 86%, 65%);--info-bg:hsl(215, 100%, 6%);--info-border:hsl(223, 43%, 17%);--info-text:hsl(216, 87%, 65%);--warning-bg:hsl(64, 100%, 6%);--warning-border:hsl(60, 100%, 9%);--warning-text:hsl(46, 87%, 65%);--error-bg:hsl(358, 76%, 10%);--error-border:hsl(357, 89%, 16%);--error-text:hsl(358, 100%, 81%)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]{background:var(--normal-bg);border-color:var(--normal-border);color:var(--normal-text)}[data-sonner-toaster][data-sonner-theme=dark] [data-sonner-toast] [data-close-button]:hover{background:var(--normal-bg-hover);border-color:var(--normal-border-hover)}[data-rich-colors=true][data-sonner-toast][data-type=success]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=success] [data-close-button]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=info]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=info] [data-close-button]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning] [data-close-button]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=error]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}[data-rich-colors=true][data-sonner-toast][data-type=error] [data-close-button]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}.sonner-loading-wrapper{--size:16px;height:var(--size);width:var(--size);position:absolute;inset:0;z-index:10}.sonner-loading-wrapper[data-visible=false]{transform-origin:center;animation:sonner-fade-out .2s ease forwards}.sonner-spinner{position:relative;top:50%;left:50%;height:var(--size);width:var(--size)}.sonner-loading-bar{animation:sonner-spin 1.2s linear infinite;background:var(--gray11);border-radius:6px;height:8%;left:-10%;position:absolute;top:-3.9%;width:24%}.sonner-loading-bar:first-child{animation-delay:-1.2s;transform:rotate(.0001deg) translate(146%)}.sonner-loading-bar:nth-child(2){animation-delay:-1.1s;transform:rotate(30deg) translate(146%)}.sonner-loading-bar:nth-child(3){animation-delay:-1s;transform:rotate(60deg) translate(146%)}.sonner-loading-bar:nth-child(4){animation-delay:-.9s;transform:rotate(90deg) translate(146%)}.sonner-loading-bar:nth-child(5){animation-delay:-.8s;transform:rotate(120deg) translate(146%)}.sonner-loading-bar:nth-child(6){animation-delay:-.7s;transform:rotate(150deg) translate(146%)}.sonner-loading-bar:nth-child(7){animation-delay:-.6s;transform:rotate(180deg) translate(146%)}.sonner-loading-bar:nth-child(8){animation-delay:-.5s;transform:rotate(210deg) translate(146%)}.sonner-loading-bar:nth-child(9){animation-delay:-.4s;transform:rotate(240deg) translate(146%)}.sonner-loading-bar:nth-child(10){animation-delay:-.3s;transform:rotate(270deg) translate(146%)}.sonner-loading-bar:nth-child(11){animation-delay:-.2s;transform:rotate(300deg) translate(146%)}.sonner-loading-bar:nth-child(12){animation-delay:-.1s;transform:rotate(330deg) translate(146%)}@keyframes sonner-fade-in{0%{opacity:0;transform:scale(.8)}100%{opacity:1;transform:scale(1)}}@keyframes sonner-fade-out{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.8)}}@keyframes sonner-spin{0%{opacity:1}100%{opacity:.15}}@media (prefers-reduced-motion){.sonner-loading-bar,[data-sonner-toast],[data-sonner-toast]>*{transition:none!important;animation:none!important}}.sonner-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center;transition:opacity .2s,transform .2s}.sonner-loader[data-visible=false]{opacity:0;transform:scale(.8) translate(-50%,-50%)}");
+function isAction(action) {
+  return action.label !== void 0;
+}
+const VISIBLE_TOASTS_AMOUNT = 3;
+const VIEWPORT_OFFSET = "24px";
+const MOBILE_VIEWPORT_OFFSET = "16px";
+const TOAST_LIFETIME = 4e3;
+const TOAST_WIDTH = 356;
+const GAP = 14;
+const SWIPE_THRESHOLD = 45;
+const TIME_BEFORE_UNMOUNT = 200;
+function cn(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+function getDefaultSwipeDirections(position) {
+  const [y2, x2] = position.split("-");
+  const directions = [];
+  if (y2) {
+    directions.push(y2);
+  }
+  if (x2) {
+    directions.push(x2);
+  }
+  return directions;
+}
+const Toast = (props) => {
+  var _toast_classNames, _toast_classNames1, _toast_classNames2, _toast_classNames3, _toast_classNames4, _toast_classNames5, _toast_classNames6, _toast_classNames7, _toast_classNames8;
+  const { invert: ToasterInvert, toast: toast2, unstyled, interacting, setHeights, visibleToasts, heights, index, toasts, expanded, removeToast, defaultRichColors, closeButton: closeButtonFromToaster, style, cancelButtonStyle, actionButtonStyle, className = "", descriptionClassName = "", duration: durationFromToaster, position, gap, expandByDefault, classNames, icons, closeButtonAriaLabel = "Close toast" } = props;
+  const [swipeDirection, setSwipeDirection] = React.useState(null);
+  const [swipeOutDirection, setSwipeOutDirection] = React.useState(null);
+  const [mounted, setMounted] = React.useState(false);
+  const [removed, setRemoved] = React.useState(false);
+  const [swiping, setSwiping] = React.useState(false);
+  const [swipeOut, setSwipeOut] = React.useState(false);
+  const [isSwiped, setIsSwiped] = React.useState(false);
+  const [offsetBeforeRemove, setOffsetBeforeRemove] = React.useState(0);
+  const [initialHeight, setInitialHeight] = React.useState(0);
+  const remainingTime = React.useRef(toast2.duration || durationFromToaster || TOAST_LIFETIME);
+  const dragStartTime = React.useRef(null);
+  const toastRef = React.useRef(null);
+  const isFront = index === 0;
+  const isVisible = index + 1 <= visibleToasts;
+  const toastType = toast2.type;
+  const dismissible = toast2.dismissible !== false;
+  const toastClassname = toast2.className || "";
+  const toastDescriptionClassname = toast2.descriptionClassName || "";
+  const heightIndex = React.useMemo(() => heights.findIndex((height) => height.toastId === toast2.id) || 0, [
+    heights,
+    toast2.id
+  ]);
+  const closeButton = React.useMemo(() => {
+    var _toast_closeButton;
+    return (_toast_closeButton = toast2.closeButton) != null ? _toast_closeButton : closeButtonFromToaster;
+  }, [
+    toast2.closeButton,
+    closeButtonFromToaster
+  ]);
+  const duration = React.useMemo(() => toast2.duration || durationFromToaster || TOAST_LIFETIME, [
+    toast2.duration,
+    durationFromToaster
+  ]);
+  const closeTimerStartTimeRef = React.useRef(0);
+  const offset = React.useRef(0);
+  const lastCloseTimerStartTimeRef = React.useRef(0);
+  const pointerStartRef = React.useRef(null);
+  const [y2, x2] = position.split("-");
+  const toastsHeightBefore = React.useMemo(() => {
+    return heights.reduce((prev, curr, reducerIndex) => {
+      if (reducerIndex >= heightIndex) {
+        return prev;
       }
-      return cleanup;
+      return prev + curr.height;
+    }, 0);
+  }, [
+    heights,
+    heightIndex
+  ]);
+  const isDocumentHidden = useIsDocumentHidden();
+  const invert = toast2.invert || ToasterInvert;
+  const disabled = toastType === "loading";
+  offset.current = React.useMemo(() => heightIndex * gap + toastsHeightBefore, [
+    heightIndex,
+    toastsHeightBefore
+  ]);
+  React.useEffect(() => {
+    remainingTime.current = duration;
+  }, [
+    duration
+  ]);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  React.useEffect(() => {
+    const toastNode = toastRef.current;
+    if (toastNode) {
+      const height = toastNode.getBoundingClientRect().height;
+      setInitialHeight(height);
+      setHeights((h) => [
+        {
+          toastId: toast2.id,
+          height,
+          position: toast2.position
+        },
+        ...h
+      ]);
+      return () => setHeights((h) => h.filter((height2) => height2.toastId !== toast2.id));
+    }
+  }, [
+    setHeights,
+    toast2.id
+  ]);
+  React.useLayoutEffect(() => {
+    if (!mounted) return;
+    const toastNode = toastRef.current;
+    const originalHeight = toastNode.style.height;
+    toastNode.style.height = "auto";
+    const newHeight = toastNode.getBoundingClientRect().height;
+    toastNode.style.height = originalHeight;
+    setInitialHeight(newHeight);
+    setHeights((heights2) => {
+      const alreadyExists = heights2.find((height) => height.toastId === toast2.id);
+      if (!alreadyExists) {
+        return [
+          {
+            toastId: toast2.id,
+            height: newHeight,
+            position: toast2.position
+          },
+          ...heights2
+        ];
+      } else {
+        return heights2.map((height) => height.toastId === toast2.id ? {
+          ...height,
+          height: newHeight
+        } : height);
+      }
     });
-    if (hasCleanup) {
-      return () => {
-        for (let i = 0; i < cleanups.length; i++) {
-          const cleanup = cleanups[i];
-          if (typeof cleanup == "function") {
-            cleanup();
+  }, [
+    mounted,
+    toast2.title,
+    toast2.description,
+    setHeights,
+    toast2.id
+  ]);
+  const deleteToast = React.useCallback(() => {
+    setRemoved(true);
+    setOffsetBeforeRemove(offset.current);
+    setHeights((h) => h.filter((height) => height.toastId !== toast2.id));
+    setTimeout(() => {
+      removeToast(toast2);
+    }, TIME_BEFORE_UNMOUNT);
+  }, [
+    toast2,
+    removeToast,
+    setHeights,
+    offset
+  ]);
+  React.useEffect(() => {
+    if (toast2.promise && toastType === "loading" || toast2.duration === Infinity || toast2.type === "loading") return;
+    let timeoutId;
+    const pauseTimer = () => {
+      if (lastCloseTimerStartTimeRef.current < closeTimerStartTimeRef.current) {
+        const elapsedTime = (/* @__PURE__ */ new Date()).getTime() - closeTimerStartTimeRef.current;
+        remainingTime.current = remainingTime.current - elapsedTime;
+      }
+      lastCloseTimerStartTimeRef.current = (/* @__PURE__ */ new Date()).getTime();
+    };
+    const startTimer = () => {
+      if (remainingTime.current === Infinity) return;
+      closeTimerStartTimeRef.current = (/* @__PURE__ */ new Date()).getTime();
+      timeoutId = setTimeout(() => {
+        toast2.onAutoClose == null ? void 0 : toast2.onAutoClose.call(toast2, toast2);
+        deleteToast();
+      }, remainingTime.current);
+    };
+    if (expanded || interacting || isDocumentHidden) {
+      pauseTimer();
+    } else {
+      startTimer();
+    }
+    return () => clearTimeout(timeoutId);
+  }, [
+    expanded,
+    interacting,
+    toast2,
+    toastType,
+    isDocumentHidden,
+    deleteToast
+  ]);
+  React.useEffect(() => {
+    if (toast2.delete) {
+      deleteToast();
+    }
+  }, [
+    deleteToast,
+    toast2.delete
+  ]);
+  function getLoadingIcon() {
+    var _toast_classNames9;
+    if (icons == null ? void 0 : icons.loading) {
+      var _toast_classNames12;
+      return /* @__PURE__ */ React.createElement("div", {
+        className: cn(classNames == null ? void 0 : classNames.loader, toast2 == null ? void 0 : (_toast_classNames12 = toast2.classNames) == null ? void 0 : _toast_classNames12.loader, "sonner-loader"),
+        "data-visible": toastType === "loading"
+      }, icons.loading);
+    }
+    return /* @__PURE__ */ React.createElement(Loader, {
+      className: cn(classNames == null ? void 0 : classNames.loader, toast2 == null ? void 0 : (_toast_classNames9 = toast2.classNames) == null ? void 0 : _toast_classNames9.loader),
+      visible: toastType === "loading"
+    });
+  }
+  const icon = toast2.icon || (icons == null ? void 0 : icons[toastType]) || getAsset(toastType);
+  var _toast_richColors, _icons_close;
+  return /* @__PURE__ */ React.createElement("li", {
+    tabIndex: 0,
+    ref: toastRef,
+    className: cn(className, toastClassname, classNames == null ? void 0 : classNames.toast, toast2 == null ? void 0 : (_toast_classNames = toast2.classNames) == null ? void 0 : _toast_classNames.toast, classNames == null ? void 0 : classNames.default, classNames == null ? void 0 : classNames[toastType], toast2 == null ? void 0 : (_toast_classNames1 = toast2.classNames) == null ? void 0 : _toast_classNames1[toastType]),
+    "data-sonner-toast": "",
+    "data-rich-colors": (_toast_richColors = toast2.richColors) != null ? _toast_richColors : defaultRichColors,
+    "data-styled": !Boolean(toast2.jsx || toast2.unstyled || unstyled),
+    "data-mounted": mounted,
+    "data-promise": Boolean(toast2.promise),
+    "data-swiped": isSwiped,
+    "data-removed": removed,
+    "data-visible": isVisible,
+    "data-y-position": y2,
+    "data-x-position": x2,
+    "data-index": index,
+    "data-front": isFront,
+    "data-swiping": swiping,
+    "data-dismissible": dismissible,
+    "data-type": toastType,
+    "data-invert": invert,
+    "data-swipe-out": swipeOut,
+    "data-swipe-direction": swipeOutDirection,
+    "data-expanded": Boolean(expanded || expandByDefault && mounted),
+    style: {
+      "--index": index,
+      "--toasts-before": index,
+      "--z-index": toasts.length - index,
+      "--offset": `${removed ? offsetBeforeRemove : offset.current}px`,
+      "--initial-height": expandByDefault ? "auto" : `${initialHeight}px`,
+      ...style,
+      ...toast2.style
+    },
+    onDragEnd: () => {
+      setSwiping(false);
+      setSwipeDirection(null);
+      pointerStartRef.current = null;
+    },
+    onPointerDown: (event) => {
+      if (disabled || !dismissible) return;
+      dragStartTime.current = /* @__PURE__ */ new Date();
+      setOffsetBeforeRemove(offset.current);
+      event.target.setPointerCapture(event.pointerId);
+      if (event.target.tagName === "BUTTON") return;
+      setSwiping(true);
+      pointerStartRef.current = {
+        x: event.clientX,
+        y: event.clientY
+      };
+    },
+    onPointerUp: () => {
+      var _toastRef_current, _toastRef_current1, _dragStartTime_current;
+      if (swipeOut || !dismissible) return;
+      pointerStartRef.current = null;
+      const swipeAmountX = Number(((_toastRef_current = toastRef.current) == null ? void 0 : _toastRef_current.style.getPropertyValue("--swipe-amount-x").replace("px", "")) || 0);
+      const swipeAmountY = Number(((_toastRef_current1 = toastRef.current) == null ? void 0 : _toastRef_current1.style.getPropertyValue("--swipe-amount-y").replace("px", "")) || 0);
+      const timeTaken = (/* @__PURE__ */ new Date()).getTime() - ((_dragStartTime_current = dragStartTime.current) == null ? void 0 : _dragStartTime_current.getTime());
+      const swipeAmount = swipeDirection === "x" ? swipeAmountX : swipeAmountY;
+      const velocity = Math.abs(swipeAmount) / timeTaken;
+      if (Math.abs(swipeAmount) >= SWIPE_THRESHOLD || velocity > 0.11) {
+        setOffsetBeforeRemove(offset.current);
+        toast2.onDismiss == null ? void 0 : toast2.onDismiss.call(toast2, toast2);
+        if (swipeDirection === "x") {
+          setSwipeOutDirection(swipeAmountX > 0 ? "right" : "left");
+        } else {
+          setSwipeOutDirection(swipeAmountY > 0 ? "down" : "up");
+        }
+        deleteToast();
+        setSwipeOut(true);
+        return;
+      } else {
+        var _toastRef_current2, _toastRef_current3;
+        (_toastRef_current2 = toastRef.current) == null ? void 0 : _toastRef_current2.style.setProperty("--swipe-amount-x", `0px`);
+        (_toastRef_current3 = toastRef.current) == null ? void 0 : _toastRef_current3.style.setProperty("--swipe-amount-y", `0px`);
+      }
+      setIsSwiped(false);
+      setSwiping(false);
+      setSwipeDirection(null);
+    },
+    onPointerMove: (event) => {
+      var _window_getSelection, _toastRef_current, _toastRef_current1;
+      if (!pointerStartRef.current || !dismissible) return;
+      const isHighlighted = ((_window_getSelection = window.getSelection()) == null ? void 0 : _window_getSelection.toString().length) > 0;
+      if (isHighlighted) return;
+      const yDelta = event.clientY - pointerStartRef.current.y;
+      const xDelta = event.clientX - pointerStartRef.current.x;
+      var _props_swipeDirections;
+      const swipeDirections = (_props_swipeDirections = props.swipeDirections) != null ? _props_swipeDirections : getDefaultSwipeDirections(position);
+      if (!swipeDirection && (Math.abs(xDelta) > 1 || Math.abs(yDelta) > 1)) {
+        setSwipeDirection(Math.abs(xDelta) > Math.abs(yDelta) ? "x" : "y");
+      }
+      let swipeAmount = {
+        x: 0,
+        y: 0
+      };
+      const getDampening = (delta) => {
+        const factor = Math.abs(delta) / 20;
+        return 1 / (1.5 + factor);
+      };
+      if (swipeDirection === "y") {
+        if (swipeDirections.includes("top") || swipeDirections.includes("bottom")) {
+          if (swipeDirections.includes("top") && yDelta < 0 || swipeDirections.includes("bottom") && yDelta > 0) {
+            swipeAmount.y = yDelta;
           } else {
-            setRef(refs[i], null);
+            const dampenedDelta = yDelta * getDampening(yDelta);
+            swipeAmount.y = Math.abs(dampenedDelta) < Math.abs(yDelta) ? dampenedDelta : yDelta;
           }
+        }
+      } else if (swipeDirection === "x") {
+        if (swipeDirections.includes("left") || swipeDirections.includes("right")) {
+          if (swipeDirections.includes("left") && xDelta < 0 || swipeDirections.includes("right") && xDelta > 0) {
+            swipeAmount.x = xDelta;
+          } else {
+            const dampenedDelta = xDelta * getDampening(xDelta);
+            swipeAmount.x = Math.abs(dampenedDelta) < Math.abs(xDelta) ? dampenedDelta : xDelta;
+          }
+        }
+      }
+      if (Math.abs(swipeAmount.x) > 0 || Math.abs(swipeAmount.y) > 0) {
+        setIsSwiped(true);
+      }
+      (_toastRef_current = toastRef.current) == null ? void 0 : _toastRef_current.style.setProperty("--swipe-amount-x", `${swipeAmount.x}px`);
+      (_toastRef_current1 = toastRef.current) == null ? void 0 : _toastRef_current1.style.setProperty("--swipe-amount-y", `${swipeAmount.y}px`);
+    }
+  }, closeButton && !toast2.jsx && toastType !== "loading" ? /* @__PURE__ */ React.createElement("button", {
+    "aria-label": closeButtonAriaLabel,
+    "data-disabled": disabled,
+    "data-close-button": true,
+    onClick: disabled || !dismissible ? () => {
+    } : () => {
+      deleteToast();
+      toast2.onDismiss == null ? void 0 : toast2.onDismiss.call(toast2, toast2);
+    },
+    className: cn(classNames == null ? void 0 : classNames.closeButton, toast2 == null ? void 0 : (_toast_classNames2 = toast2.classNames) == null ? void 0 : _toast_classNames2.closeButton)
+  }, (_icons_close = icons == null ? void 0 : icons.close) != null ? _icons_close : CloseIcon) : null, (toastType || toast2.icon || toast2.promise) && toast2.icon !== null && ((icons == null ? void 0 : icons[toastType]) !== null || toast2.icon) ? /* @__PURE__ */ React.createElement("div", {
+    "data-icon": "",
+    className: cn(classNames == null ? void 0 : classNames.icon, toast2 == null ? void 0 : (_toast_classNames3 = toast2.classNames) == null ? void 0 : _toast_classNames3.icon)
+  }, toast2.promise || toast2.type === "loading" && !toast2.icon ? toast2.icon || getLoadingIcon() : null, toast2.type !== "loading" ? icon : null) : null, /* @__PURE__ */ React.createElement("div", {
+    "data-content": "",
+    className: cn(classNames == null ? void 0 : classNames.content, toast2 == null ? void 0 : (_toast_classNames4 = toast2.classNames) == null ? void 0 : _toast_classNames4.content)
+  }, /* @__PURE__ */ React.createElement("div", {
+    "data-title": "",
+    className: cn(classNames == null ? void 0 : classNames.title, toast2 == null ? void 0 : (_toast_classNames5 = toast2.classNames) == null ? void 0 : _toast_classNames5.title)
+  }, toast2.jsx ? toast2.jsx : typeof toast2.title === "function" ? toast2.title() : toast2.title), toast2.description ? /* @__PURE__ */ React.createElement("div", {
+    "data-description": "",
+    className: cn(descriptionClassName, toastDescriptionClassname, classNames == null ? void 0 : classNames.description, toast2 == null ? void 0 : (_toast_classNames6 = toast2.classNames) == null ? void 0 : _toast_classNames6.description)
+  }, typeof toast2.description === "function" ? toast2.description() : toast2.description) : null), /* @__PURE__ */ React.isValidElement(toast2.cancel) ? toast2.cancel : toast2.cancel && isAction(toast2.cancel) ? /* @__PURE__ */ React.createElement("button", {
+    "data-button": true,
+    "data-cancel": true,
+    style: toast2.cancelButtonStyle || cancelButtonStyle,
+    onClick: (event) => {
+      if (!isAction(toast2.cancel)) return;
+      if (!dismissible) return;
+      toast2.cancel.onClick == null ? void 0 : toast2.cancel.onClick.call(toast2.cancel, event);
+      deleteToast();
+    },
+    className: cn(classNames == null ? void 0 : classNames.cancelButton, toast2 == null ? void 0 : (_toast_classNames7 = toast2.classNames) == null ? void 0 : _toast_classNames7.cancelButton)
+  }, toast2.cancel.label) : null, /* @__PURE__ */ React.isValidElement(toast2.action) ? toast2.action : toast2.action && isAction(toast2.action) ? /* @__PURE__ */ React.createElement("button", {
+    "data-button": true,
+    "data-action": true,
+    style: toast2.actionButtonStyle || actionButtonStyle,
+    onClick: (event) => {
+      if (!isAction(toast2.action)) return;
+      toast2.action.onClick == null ? void 0 : toast2.action.onClick.call(toast2.action, event);
+      if (event.defaultPrevented) return;
+      deleteToast();
+    },
+    className: cn(classNames == null ? void 0 : classNames.actionButton, toast2 == null ? void 0 : (_toast_classNames8 = toast2.classNames) == null ? void 0 : _toast_classNames8.actionButton)
+  }, toast2.action.label) : null);
+};
+function getDocumentDirection() {
+  if (typeof window === "undefined") return "ltr";
+  if (typeof document === "undefined") return "ltr";
+  const dirAttribute = document.documentElement.getAttribute("dir");
+  if (dirAttribute === "auto" || !dirAttribute) {
+    return window.getComputedStyle(document.documentElement).direction;
+  }
+  return dirAttribute;
+}
+function assignOffset(defaultOffset2, mobileOffset) {
+  const styles = {};
+  [
+    defaultOffset2,
+    mobileOffset
+  ].forEach((offset, index) => {
+    const isMobile = index === 1;
+    const prefix = isMobile ? "--mobile-offset" : "--offset";
+    const defaultValue = isMobile ? MOBILE_VIEWPORT_OFFSET : VIEWPORT_OFFSET;
+    function assignAll(offset2) {
+      [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ].forEach((key) => {
+        styles[`${prefix}-${key}`] = typeof offset2 === "number" ? `${offset2}px` : offset2;
+      });
+    }
+    if (typeof offset === "number" || typeof offset === "string") {
+      assignAll(offset);
+    } else if (typeof offset === "object") {
+      [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ].forEach((key) => {
+        if (offset[key] === void 0) {
+          styles[`${prefix}-${key}`] = defaultValue;
+        } else {
+          styles[`${prefix}-${key}`] = typeof offset[key] === "number" ? `${offset[key]}px` : offset[key];
+        }
+      });
+    } else {
+      assignAll(defaultValue);
+    }
+  });
+  return styles;
+}
+const Toaster = /* @__PURE__ */ React.forwardRef(function Toaster2(props, ref) {
+  const { invert, position = "bottom-right", hotkey = [
+    "altKey",
+    "KeyT"
+  ], expand, closeButton, className, offset, mobileOffset, theme = "light", richColors, duration, style, visibleToasts = VISIBLE_TOASTS_AMOUNT, toastOptions, dir = getDocumentDirection(), gap = GAP, icons, containerAriaLabel = "Notifications" } = props;
+  const [toasts, setToasts] = React.useState([]);
+  const possiblePositions = React.useMemo(() => {
+    return Array.from(new Set([
+      position
+    ].concat(toasts.filter((toast2) => toast2.position).map((toast2) => toast2.position))));
+  }, [
+    toasts,
+    position
+  ]);
+  const [heights, setHeights] = React.useState([]);
+  const [expanded, setExpanded] = React.useState(false);
+  const [interacting, setInteracting] = React.useState(false);
+  const [actualTheme, setActualTheme] = React.useState(theme !== "system" ? theme : typeof window !== "undefined" ? window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light" : "light");
+  const listRef = React.useRef(null);
+  const hotkeyLabel = hotkey.join("+").replace(/Key/g, "").replace(/Digit/g, "");
+  const lastFocusedElementRef = React.useRef(null);
+  const isFocusWithinRef = React.useRef(false);
+  const removeToast = React.useCallback((toastToRemove) => {
+    setToasts((toasts2) => {
+      var _toasts_find;
+      if (!((_toasts_find = toasts2.find((toast2) => toast2.id === toastToRemove.id)) == null ? void 0 : _toasts_find.delete)) {
+        ToastState.dismiss(toastToRemove.id);
+      }
+      return toasts2.filter(({ id: id2 }) => id2 !== toastToRemove.id);
+    });
+  }, []);
+  React.useEffect(() => {
+    return ToastState.subscribe((toast2) => {
+      if (toast2.dismiss) {
+        requestAnimationFrame(() => {
+          setToasts((toasts2) => toasts2.map((t2) => t2.id === toast2.id ? {
+            ...t2,
+            delete: true
+          } : t2));
+        });
+        return;
+      }
+      setTimeout(() => {
+        ReactDOM.flushSync(() => {
+          setToasts((toasts2) => {
+            const indexOfExistingToast = toasts2.findIndex((t2) => t2.id === toast2.id);
+            if (indexOfExistingToast !== -1) {
+              return [
+                ...toasts2.slice(0, indexOfExistingToast),
+                {
+                  ...toasts2[indexOfExistingToast],
+                  ...toast2
+                },
+                ...toasts2.slice(indexOfExistingToast + 1)
+              ];
+            }
+            return [
+              toast2,
+              ...toasts2
+            ];
+          });
+        });
+      });
+    });
+  }, [
+    toasts
+  ]);
+  React.useEffect(() => {
+    if (theme !== "system") {
+      setActualTheme(theme);
+      return;
+    }
+    if (theme === "system") {
+      if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        setActualTheme("dark");
+      } else {
+        setActualTheme("light");
+      }
+    }
+    if (typeof window === "undefined") return;
+    const darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    try {
+      darkMediaQuery.addEventListener("change", ({ matches }) => {
+        if (matches) {
+          setActualTheme("dark");
+        } else {
+          setActualTheme("light");
+        }
+      });
+    } catch (error) {
+      darkMediaQuery.addListener(({ matches }) => {
+        try {
+          if (matches) {
+            setActualTheme("dark");
+          } else {
+            setActualTheme("light");
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      });
+    }
+  }, [
+    theme
+  ]);
+  React.useEffect(() => {
+    if (toasts.length <= 1) {
+      setExpanded(false);
+    }
+  }, [
+    toasts
+  ]);
+  React.useEffect(() => {
+    const handleKeyDown = (event) => {
+      var _listRef_current;
+      const isHotkeyPressed = hotkey.every((key) => event[key] || event.code === key);
+      if (isHotkeyPressed) {
+        var _listRef_current1;
+        setExpanded(true);
+        (_listRef_current1 = listRef.current) == null ? void 0 : _listRef_current1.focus();
+      }
+      if (event.code === "Escape" && (document.activeElement === listRef.current || ((_listRef_current = listRef.current) == null ? void 0 : _listRef_current.contains(document.activeElement)))) {
+        setExpanded(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [
+    hotkey
+  ]);
+  React.useEffect(() => {
+    if (listRef.current) {
+      return () => {
+        if (lastFocusedElementRef.current) {
+          lastFocusedElementRef.current.focus({
+            preventScroll: true
+          });
+          lastFocusedElementRef.current = null;
+          isFocusWithinRef.current = false;
         }
       };
     }
-  };
-}
-function useComposedRefs(...refs) {
-  return reactExports.useCallback(composeRefs(...refs), refs);
-}
+  }, [
+    listRef.current
+  ]);
+  return (
+    // Remove item from normal navigation flow, only available via hotkey
+    /* @__PURE__ */ React.createElement("section", {
+      ref,
+      "aria-label": `${containerAriaLabel} ${hotkeyLabel}`,
+      tabIndex: -1,
+      "aria-live": "polite",
+      "aria-relevant": "additions text",
+      "aria-atomic": "false",
+      suppressHydrationWarning: true
+    }, possiblePositions.map((position2, index) => {
+      var _heights_;
+      const [y2, x2] = position2.split("-");
+      if (!toasts.length) return null;
+      return /* @__PURE__ */ React.createElement("ol", {
+        key: position2,
+        dir: dir === "auto" ? getDocumentDirection() : dir,
+        tabIndex: -1,
+        ref: listRef,
+        className,
+        "data-sonner-toaster": true,
+        "data-sonner-theme": actualTheme,
+        "data-y-position": y2,
+        "data-lifted": expanded && toasts.length > 1 && !expand,
+        "data-x-position": x2,
+        style: {
+          "--front-toast-height": `${((_heights_ = heights[0]) == null ? void 0 : _heights_.height) || 0}px`,
+          "--width": `${TOAST_WIDTH}px`,
+          "--gap": `${gap}px`,
+          ...style,
+          ...assignOffset(offset, mobileOffset)
+        },
+        onBlur: (event) => {
+          if (isFocusWithinRef.current && !event.currentTarget.contains(event.relatedTarget)) {
+            isFocusWithinRef.current = false;
+            if (lastFocusedElementRef.current) {
+              lastFocusedElementRef.current.focus({
+                preventScroll: true
+              });
+              lastFocusedElementRef.current = null;
+            }
+          }
+        },
+        onFocus: (event) => {
+          const isNotDismissible = event.target instanceof HTMLElement && event.target.dataset.dismissible === "false";
+          if (isNotDismissible) return;
+          if (!isFocusWithinRef.current) {
+            isFocusWithinRef.current = true;
+            lastFocusedElementRef.current = event.relatedTarget;
+          }
+        },
+        onMouseEnter: () => setExpanded(true),
+        onMouseMove: () => setExpanded(true),
+        onMouseLeave: () => {
+          if (!interacting) {
+            setExpanded(false);
+          }
+        },
+        onDragEnd: () => setExpanded(false),
+        onPointerDown: (event) => {
+          const isNotDismissible = event.target instanceof HTMLElement && event.target.dataset.dismissible === "false";
+          if (isNotDismissible) return;
+          setInteracting(true);
+        },
+        onPointerUp: () => setInteracting(false)
+      }, toasts.filter((toast2) => !toast2.position && index === 0 || toast2.position === position2).map((toast2, index2) => {
+        var _toastOptions_duration, _toastOptions_closeButton;
+        return /* @__PURE__ */ React.createElement(Toast, {
+          key: toast2.id,
+          icons,
+          index: index2,
+          toast: toast2,
+          defaultRichColors: richColors,
+          duration: (_toastOptions_duration = toastOptions == null ? void 0 : toastOptions.duration) != null ? _toastOptions_duration : duration,
+          className: toastOptions == null ? void 0 : toastOptions.className,
+          descriptionClassName: toastOptions == null ? void 0 : toastOptions.descriptionClassName,
+          invert,
+          visibleToasts,
+          closeButton: (_toastOptions_closeButton = toastOptions == null ? void 0 : toastOptions.closeButton) != null ? _toastOptions_closeButton : closeButton,
+          interacting,
+          position: position2,
+          style: toastOptions == null ? void 0 : toastOptions.style,
+          unstyled: toastOptions == null ? void 0 : toastOptions.unstyled,
+          classNames: toastOptions == null ? void 0 : toastOptions.classNames,
+          cancelButtonStyle: toastOptions == null ? void 0 : toastOptions.cancelButtonStyle,
+          actionButtonStyle: toastOptions == null ? void 0 : toastOptions.actionButtonStyle,
+          closeButtonAriaLabel: toastOptions == null ? void 0 : toastOptions.closeButtonAriaLabel,
+          removeToast,
+          toasts: toasts.filter((t2) => t2.position == toast2.position),
+          heights: heights.filter((h) => h.position == toast2.position),
+          setHeights,
+          expandByDefault: expand,
+          gap,
+          expanded,
+          swipeDirections: props.swipeDirections
+        });
+      }));
+    }))
+  );
+});
 function createContext2(rootComponentName, defaultContext) {
   const Context = reactExports.createContext(defaultContext);
   const Provider = (props) => {
@@ -17252,6 +18493,59 @@ function composeContextScopes(...scopes) {
   createScope.scopeName = baseScope.scopeName;
   return createScope;
 }
+function setRef(ref, value) {
+  if (typeof ref === "function") {
+    return ref(value);
+  } else if (ref !== null && ref !== void 0) {
+    ref.current = value;
+  }
+}
+function composeRefs(...refs) {
+  return (node) => {
+    let hasCleanup = false;
+    const cleanups = refs.map((ref) => {
+      const cleanup = setRef(ref, node);
+      if (!hasCleanup && typeof cleanup == "function") {
+        hasCleanup = true;
+      }
+      return cleanup;
+    });
+    if (hasCleanup) {
+      return () => {
+        for (let i = 0; i < cleanups.length; i++) {
+          const cleanup = cleanups[i];
+          if (typeof cleanup == "function") {
+            cleanup();
+          } else {
+            setRef(refs[i], null);
+          }
+        }
+      };
+    }
+  };
+}
+function useComposedRefs(...refs) {
+  return reactExports.useCallback(composeRefs(...refs), refs);
+}
+function composeEventHandlers(originalEventHandler, ourEventHandler, { checkForDefaultPrevented = true } = {}) {
+  return function handleEvent(event) {
+    originalEventHandler == null ? void 0 : originalEventHandler(event);
+    if (checkForDefaultPrevented === false || !event.defaultPrevented) {
+      return ourEventHandler == null ? void 0 : ourEventHandler(event);
+    }
+  };
+}
+var useLayoutEffect2 = (globalThis == null ? void 0 : globalThis.document) ? reactExports.useLayoutEffect : () => {
+};
+var useReactId = React$1[" useId ".trim().toString()] || (() => void 0);
+var count$1 = 0;
+function useId(deterministicId) {
+  const [id2, setId] = reactExports.useState(useReactId());
+  useLayoutEffect2(() => {
+    setId((reactId) => reactId ?? String(count$1++));
+  }, [deterministicId]);
+  return deterministicId || (id2 ? `radix-${id2}` : "");
+}
 function useCallbackRef$1(callback) {
   const callbackRef = reactExports.useRef(callback);
   reactExports.useEffect(() => {
@@ -17302,52 +18596,6 @@ function useUncontrolledState({
   }, [value, prevValueRef, handleChange]);
   return uncontrolledState;
 }
-function usePrevious(value) {
-  const ref = reactExports.useRef({ value, previous: value });
-  return reactExports.useMemo(() => {
-    if (ref.current.value !== value) {
-      ref.current.previous = ref.current.value;
-      ref.current.value = value;
-    }
-    return ref.current.previous;
-  }, [value]);
-}
-var useLayoutEffect2 = (globalThis == null ? void 0 : globalThis.document) ? reactExports.useLayoutEffect : () => {
-};
-function useSize(element) {
-  const [size, setSize] = reactExports.useState(void 0);
-  useLayoutEffect2(() => {
-    if (element) {
-      setSize({ width: element.offsetWidth, height: element.offsetHeight });
-      const resizeObserver = new ResizeObserver((entries) => {
-        if (!Array.isArray(entries)) {
-          return;
-        }
-        if (!entries.length) {
-          return;
-        }
-        const entry = entries[0];
-        let width;
-        let height;
-        if ("borderBoxSize" in entry) {
-          const borderSizeEntry = entry["borderBoxSize"];
-          const borderSize = Array.isArray(borderSizeEntry) ? borderSizeEntry[0] : borderSizeEntry;
-          width = borderSize["inlineSize"];
-          height = borderSize["blockSize"];
-        } else {
-          width = element.offsetWidth;
-          height = element.offsetHeight;
-        }
-        setSize({ width, height });
-      });
-      resizeObserver.observe(element, { box: "border-box" });
-      return () => resizeObserver.unobserve(element);
-    } else {
-      setSize(void 0);
-    }
-  }, [element]);
-  return size;
-}
 // @__NO_SIDE_EFFECTS__
 function createSlot(ownerName) {
   const SlotClone = /* @__PURE__ */ createSlotClone(ownerName);
@@ -17390,6 +18638,15 @@ function createSlotClone(ownerName) {
   return SlotClone;
 }
 var SLOTTABLE_IDENTIFIER = Symbol("radix.slottable");
+// @__NO_SIDE_EFFECTS__
+function createSlottable(ownerName) {
+  const Slottable2 = ({ children }) => {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children });
+  };
+  Slottable2.displayName = `${ownerName}.Slottable`;
+  Slottable2.__radixId = SLOTTABLE_IDENTIFIER;
+  return Slottable2;
+}
 function isSlottable(child) {
   return reactExports.isValidElement(child) && typeof child.type === "function" && "__radixId" in child.type && child.type.__radixId === SLOTTABLE_IDENTIFIER;
 }
@@ -17463,197 +18720,6 @@ var Primitive = NODES.reduce((primitive, node) => {
 }, {});
 function dispatchDiscreteCustomEvent(target, event) {
   if (target) reactDomExports.flushSync(() => target.dispatchEvent(event));
-}
-var SWITCH_NAME = "Switch";
-var [createSwitchContext, createSwitchScope] = createContextScope(SWITCH_NAME);
-var [SwitchProvider, useSwitchContext] = createSwitchContext(SWITCH_NAME);
-var Switch$1 = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const {
-      __scopeSwitch,
-      name,
-      checked: checkedProp,
-      defaultChecked,
-      required,
-      disabled,
-      value = "on",
-      onCheckedChange,
-      form,
-      ...switchProps
-    } = props;
-    const [button, setButton] = reactExports.useState(null);
-    const composedRefs = useComposedRefs(forwardedRef, (node) => setButton(node));
-    const hasConsumerStoppedPropagationRef = reactExports.useRef(false);
-    const isFormControl = button ? form || !!button.closest("form") : true;
-    const [checked = false, setChecked] = useControllableState({
-      prop: checkedProp,
-      defaultProp: defaultChecked,
-      onChange: onCheckedChange
-    });
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(SwitchProvider, { scope: __scopeSwitch, checked, disabled, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Primitive.button,
-        {
-          type: "button",
-          role: "switch",
-          "aria-checked": checked,
-          "aria-required": required,
-          "data-state": getState$2(checked),
-          "data-disabled": disabled ? "" : void 0,
-          disabled,
-          value,
-          ...switchProps,
-          ref: composedRefs,
-          onClick: composeEventHandlers(props.onClick, (event) => {
-            setChecked((prevChecked) => !prevChecked);
-            if (isFormControl) {
-              hasConsumerStoppedPropagationRef.current = event.isPropagationStopped();
-              if (!hasConsumerStoppedPropagationRef.current) event.stopPropagation();
-            }
-          })
-        }
-      ),
-      isFormControl && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        BubbleInput$1,
-        {
-          control: button,
-          bubbles: !hasConsumerStoppedPropagationRef.current,
-          name,
-          value,
-          checked,
-          required,
-          disabled,
-          form,
-          style: { transform: "translateX(-100%)" }
-        }
-      )
-    ] });
-  }
-);
-Switch$1.displayName = SWITCH_NAME;
-var THUMB_NAME = "SwitchThumb";
-var SwitchThumb = reactExports.forwardRef(
-  (props, forwardedRef) => {
-    const { __scopeSwitch, ...thumbProps } = props;
-    const context = useSwitchContext(THUMB_NAME, __scopeSwitch);
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Primitive.span,
-      {
-        "data-state": getState$2(context.checked),
-        "data-disabled": context.disabled ? "" : void 0,
-        ...thumbProps,
-        ref: forwardedRef
-      }
-    );
-  }
-);
-SwitchThumb.displayName = THUMB_NAME;
-var BubbleInput$1 = (props) => {
-  const { control, checked, bubbles = true, ...inputProps } = props;
-  const ref = reactExports.useRef(null);
-  const prevChecked = usePrevious(checked);
-  const controlSize = useSize(control);
-  reactExports.useEffect(() => {
-    const input = ref.current;
-    const inputProto = window.HTMLInputElement.prototype;
-    const descriptor = Object.getOwnPropertyDescriptor(inputProto, "checked");
-    const setChecked = descriptor.set;
-    if (prevChecked !== checked && setChecked) {
-      const event = new Event("click", { bubbles });
-      setChecked.call(input, checked);
-      input.dispatchEvent(event);
-    }
-  }, [prevChecked, checked, bubbles]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "input",
-    {
-      type: "checkbox",
-      "aria-hidden": true,
-      defaultChecked: checked,
-      ...inputProps,
-      tabIndex: -1,
-      ref,
-      style: {
-        ...props.style,
-        ...controlSize,
-        position: "absolute",
-        pointerEvents: "none",
-        opacity: 0,
-        margin: 0
-      }
-    }
-  );
-};
-function getState$2(checked) {
-  return checked ? "checked" : "unchecked";
-}
-var Root$3 = Switch$1;
-var Thumb = SwitchThumb;
-const Switch = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-  Root$3,
-  {
-    className: cn(
-      "peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",
-      className
-    ),
-    ...props,
-    ref,
-    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Thumb,
-      {
-        className: cn(
-          "pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
-        )
-      }
-    )
-  }
-));
-Switch.displayName = Root$3.displayName;
-const initialState = {
-  theme: "light",
-  setTheme: () => null
-};
-const ThemeProviderContext = reactExports.createContext(initialState);
-function ThemeProvider({
-  children,
-  defaultTheme = "light",
-  storageKey = "bolo-ui-theme",
-  ...props
-}) {
-  const [theme, setTheme] = reactExports.useState(
-    () => localStorage.getItem(storageKey) || defaultTheme
-  );
-  reactExports.useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove("light", "dark");
-    root.classList.add(theme);
-  }, [theme]);
-  const value = {
-    theme,
-    setTheme: (theme2) => {
-      localStorage.setItem(storageKey, theme2);
-      setTheme(theme2);
-    }
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeProviderContext.Provider, { ...props, value, children });
-}
-const useTheme = () => {
-  const context = reactExports.useContext(ThemeProviderContext);
-  if (context === void 0)
-    throw new Error("useTheme must be used within a ThemeProvider");
-  return context;
-};
-const AppLayout = ({ children }) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex h-[500px] w-[350px] flex-col overflow-hidden bg-background text-foreground", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-1 overflow-hidden", children: /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex flex-1 flex-col overflow-y-auto px-2 py-1", children }) }) });
-};
-var useReactId = React$1[" useId ".trim().toString()] || (() => void 0);
-var count$1 = 0;
-function useId(deterministicId) {
-  const [id2, setId] = reactExports.useState(useReactId());
-  useLayoutEffect2(() => {
-    setId((reactId) => reactId ?? String(count$1++));
-  }, [deterministicId]);
-  return deterministicId || (id2 ? `radix-${id2}` : "");
 }
 function useEscapeKeydown(onEscapeKeyDownProp, ownerDocument = globalThis == null ? void 0 : globalThis.document) {
   const onEscapeKeyDown = useCallbackRef$1(onEscapeKeyDownProp);
@@ -18068,7 +19134,7 @@ function arrayRemove(array, item) {
 function removeLinks(items) {
   return items.filter((item) => item.tagName !== "A");
 }
-var PORTAL_NAME$1 = "Portal";
+var PORTAL_NAME$2 = "Portal";
 var Portal$1 = reactExports.forwardRef((props, forwardedRef) => {
   var _a;
   const { container: containerProp, ...portalProps } = props;
@@ -18077,7 +19143,7 @@ var Portal$1 = reactExports.forwardRef((props, forwardedRef) => {
   const container = containerProp || mounted && ((_a = globalThis == null ? void 0 : globalThis.document) == null ? void 0 : _a.body);
   return container ? ReactDOM.createPortal(/* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.div, { ...portalProps, ref: forwardedRef }), container) : null;
 });
-Portal$1.displayName = PORTAL_NAME$1;
+Portal$1.displayName = PORTAL_NAME$2;
 function useStateMachine(initialState2, machine) {
   return reactExports.useReducer((state, event) => {
     const nextState = machine[state][event];
@@ -19036,11 +20102,11 @@ var Dialog$1 = (props) => {
   );
 };
 Dialog$1.displayName = DIALOG_NAME;
-var TRIGGER_NAME = "DialogTrigger";
+var TRIGGER_NAME$1 = "DialogTrigger";
 var DialogTrigger = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDialog, ...triggerProps } = props;
-    const context = useDialogContext(TRIGGER_NAME, __scopeDialog);
+    const context = useDialogContext(TRIGGER_NAME$1, __scopeDialog);
     const composedTriggerRef = useComposedRefs(forwardedRef, context.triggerRef);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.button,
@@ -19049,7 +20115,7 @@ var DialogTrigger = reactExports.forwardRef(
         "aria-haspopup": "dialog",
         "aria-expanded": context.open,
         "aria-controls": context.contentId,
-        "data-state": getState$1(context.open),
+        "data-state": getState$2(context.open),
         ...triggerProps,
         ref: composedTriggerRef,
         onClick: composeEventHandlers(props.onClick, context.onOpenToggle)
@@ -19057,39 +20123,39 @@ var DialogTrigger = reactExports.forwardRef(
     );
   }
 );
-DialogTrigger.displayName = TRIGGER_NAME;
-var PORTAL_NAME = "DialogPortal";
-var [PortalProvider, usePortalContext] = createDialogContext(PORTAL_NAME, {
+DialogTrigger.displayName = TRIGGER_NAME$1;
+var PORTAL_NAME$1 = "DialogPortal";
+var [PortalProvider, usePortalContext] = createDialogContext(PORTAL_NAME$1, {
   forceMount: void 0
 });
 var DialogPortal$1 = (props) => {
   const { __scopeDialog, forceMount, children, container } = props;
-  const context = useDialogContext(PORTAL_NAME, __scopeDialog);
+  const context = useDialogContext(PORTAL_NAME$1, __scopeDialog);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(PortalProvider, { scope: __scopeDialog, forceMount, children: reactExports.Children.map(children, (child) => /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Portal$1, { asChild: true, container, children: child }) })) });
 };
-DialogPortal$1.displayName = PORTAL_NAME;
-var OVERLAY_NAME = "DialogOverlay";
+DialogPortal$1.displayName = PORTAL_NAME$1;
+var OVERLAY_NAME$1 = "DialogOverlay";
 var DialogOverlay$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext(OVERLAY_NAME, props.__scopeDialog);
+    const portalContext = usePortalContext(OVERLAY_NAME$1, props.__scopeDialog);
     const { forceMount = portalContext.forceMount, ...overlayProps } = props;
-    const context = useDialogContext(OVERLAY_NAME, props.__scopeDialog);
+    const context = useDialogContext(OVERLAY_NAME$1, props.__scopeDialog);
     return context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogOverlayImpl, { ...overlayProps, ref: forwardedRef }) }) : null;
   }
 );
-DialogOverlay$1.displayName = OVERLAY_NAME;
+DialogOverlay$1.displayName = OVERLAY_NAME$1;
 var Slot = /* @__PURE__ */ createSlot("DialogOverlay.RemoveScroll");
 var DialogOverlayImpl = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDialog, ...overlayProps } = props;
-    const context = useDialogContext(OVERLAY_NAME, __scopeDialog);
+    const context = useDialogContext(OVERLAY_NAME$1, __scopeDialog);
     return (
       // Make sure `Content` is scrollable even when it doesn't live inside `RemoveScroll`
       // ie. when `Overlay` and `Content` are siblings
       /* @__PURE__ */ jsxRuntimeExports.jsx(ReactRemoveScroll, { as: Slot, allowPinchZoom: true, shards: [context.contentRef], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Primitive.div,
         {
-          "data-state": getState$1(context.open),
+          "data-state": getState$2(context.open),
           ...overlayProps,
           ref: forwardedRef,
           style: { pointerEvents: "auto", ...overlayProps.style }
@@ -19098,19 +20164,19 @@ var DialogOverlayImpl = reactExports.forwardRef(
     );
   }
 );
-var CONTENT_NAME = "DialogContent";
+var CONTENT_NAME$1 = "DialogContent";
 var DialogContent$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const portalContext = usePortalContext(CONTENT_NAME, props.__scopeDialog);
+    const portalContext = usePortalContext(CONTENT_NAME$1, props.__scopeDialog);
     const { forceMount = portalContext.forceMount, ...contentProps } = props;
-    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    const context = useDialogContext(CONTENT_NAME$1, props.__scopeDialog);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || context.open, children: context.modal ? /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentModal, { ...contentProps, ref: forwardedRef }) : /* @__PURE__ */ jsxRuntimeExports.jsx(DialogContentNonModal, { ...contentProps, ref: forwardedRef }) });
   }
 );
-DialogContent$1.displayName = CONTENT_NAME;
+DialogContent$1.displayName = CONTENT_NAME$1;
 var DialogContentModal = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    const context = useDialogContext(CONTENT_NAME$1, props.__scopeDialog);
     const contentRef = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, context.contentRef, contentRef);
     reactExports.useEffect(() => {
@@ -19145,7 +20211,7 @@ var DialogContentModal = reactExports.forwardRef(
 );
 var DialogContentNonModal = reactExports.forwardRef(
   (props, forwardedRef) => {
-    const context = useDialogContext(CONTENT_NAME, props.__scopeDialog);
+    const context = useDialogContext(CONTENT_NAME$1, props.__scopeDialog);
     const hasInteractedOutsideRef = reactExports.useRef(false);
     const hasPointerDownOutsideRef = reactExports.useRef(false);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -19188,7 +20254,7 @@ var DialogContentNonModal = reactExports.forwardRef(
 var DialogContentImpl = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDialog, trapFocus, onOpenAutoFocus, onCloseAutoFocus, ...contentProps } = props;
-    const context = useDialogContext(CONTENT_NAME, __scopeDialog);
+    const context = useDialogContext(CONTENT_NAME$1, __scopeDialog);
     const contentRef = reactExports.useRef(null);
     const composedRefs = useComposedRefs(forwardedRef, contentRef);
     useFocusGuards();
@@ -19208,7 +20274,7 @@ var DialogContentImpl = reactExports.forwardRef(
               id: context.contentId,
               "aria-describedby": context.descriptionId,
               "aria-labelledby": context.titleId,
-              "data-state": getState$1(context.open),
+              "data-state": getState$2(context.open),
               ...contentProps,
               ref: composedRefs,
               onDismiss: () => context.onOpenChange(false)
@@ -19218,29 +20284,29 @@ var DialogContentImpl = reactExports.forwardRef(
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(TitleWarning, { titleId: context.titleId }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(DescriptionWarning, { contentRef, descriptionId: context.descriptionId })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DescriptionWarning$1, { contentRef, descriptionId: context.descriptionId })
       ] })
     ] });
   }
 );
-var TITLE_NAME = "DialogTitle";
+var TITLE_NAME$1 = "DialogTitle";
 var DialogTitle$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDialog, ...titleProps } = props;
-    const context = useDialogContext(TITLE_NAME, __scopeDialog);
+    const context = useDialogContext(TITLE_NAME$1, __scopeDialog);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.h2, { id: context.titleId, ...titleProps, ref: forwardedRef });
   }
 );
-DialogTitle$1.displayName = TITLE_NAME;
-var DESCRIPTION_NAME = "DialogDescription";
+DialogTitle$1.displayName = TITLE_NAME$1;
+var DESCRIPTION_NAME$1 = "DialogDescription";
 var DialogDescription$1 = reactExports.forwardRef(
   (props, forwardedRef) => {
     const { __scopeDialog, ...descriptionProps } = props;
-    const context = useDialogContext(DESCRIPTION_NAME, __scopeDialog);
+    const context = useDialogContext(DESCRIPTION_NAME$1, __scopeDialog);
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Primitive.p, { id: context.descriptionId, ...descriptionProps, ref: forwardedRef });
   }
 );
-DialogDescription$1.displayName = DESCRIPTION_NAME;
+DialogDescription$1.displayName = DESCRIPTION_NAME$1;
 var CLOSE_NAME = "DialogClose";
 var DialogClose = reactExports.forwardRef(
   (props, forwardedRef) => {
@@ -19258,13 +20324,13 @@ var DialogClose = reactExports.forwardRef(
   }
 );
 DialogClose.displayName = CLOSE_NAME;
-function getState$1(open) {
+function getState$2(open) {
   return open ? "open" : "closed";
 }
 var TITLE_WARNING_NAME = "DialogTitleWarning";
 var [WarningProvider, useWarningContext] = createContext2(TITLE_WARNING_NAME, {
-  contentName: CONTENT_NAME,
-  titleName: TITLE_NAME,
+  contentName: CONTENT_NAME$1,
+  titleName: TITLE_NAME$1,
   docsSlug: "dialog"
 });
 var TitleWarning = ({ titleId }) => {
@@ -19283,7 +20349,7 @@ For more information, see https://radix-ui.com/primitives/docs/components/${titl
   return null;
 };
 var DESCRIPTION_WARNING_NAME = "DialogDescriptionWarning";
-var DescriptionWarning = ({ contentRef, descriptionId }) => {
+var DescriptionWarning$1 = ({ contentRef, descriptionId }) => {
   const descriptionWarningContext = useWarningContext(DESCRIPTION_WARNING_NAME);
   const MESSAGE = `Warning: Missing \`Description\` or \`aria-describedby={undefined}\` for {${descriptionWarningContext.contentName}}.`;
   reactExports.useEffect(() => {
@@ -19296,20 +20362,634 @@ var DescriptionWarning = ({ contentRef, descriptionId }) => {
   }, [MESSAGE, contentRef, descriptionId]);
   return null;
 };
-var Root$2 = Dialog$1;
+var Root$3 = Dialog$1;
+var Trigger = DialogTrigger;
 var Portal = DialogPortal$1;
 var Overlay = DialogOverlay$1;
 var Content = DialogContent$1;
 var Title = DialogTitle$1;
 var Description = DialogDescription$1;
 var Close = DialogClose;
-const Dialog = Root$2;
+var ROOT_NAME = "AlertDialog";
+var [createAlertDialogContext, createAlertDialogScope] = createContextScope(ROOT_NAME, [
+  createDialogScope
+]);
+var useDialogScope = createDialogScope();
+var AlertDialog$1 = (props) => {
+  const { __scopeAlertDialog, ...alertDialogProps } = props;
+  const dialogScope = useDialogScope(__scopeAlertDialog);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Root$3, { ...dialogScope, ...alertDialogProps, modal: true });
+};
+AlertDialog$1.displayName = ROOT_NAME;
+var TRIGGER_NAME = "AlertDialogTrigger";
+var AlertDialogTrigger = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeAlertDialog, ...triggerProps } = props;
+    const dialogScope = useDialogScope(__scopeAlertDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Trigger, { ...dialogScope, ...triggerProps, ref: forwardedRef });
+  }
+);
+AlertDialogTrigger.displayName = TRIGGER_NAME;
+var PORTAL_NAME = "AlertDialogPortal";
+var AlertDialogPortal$1 = (props) => {
+  const { __scopeAlertDialog, ...portalProps } = props;
+  const dialogScope = useDialogScope(__scopeAlertDialog);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Portal, { ...dialogScope, ...portalProps });
+};
+AlertDialogPortal$1.displayName = PORTAL_NAME;
+var OVERLAY_NAME = "AlertDialogOverlay";
+var AlertDialogOverlay$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeAlertDialog, ...overlayProps } = props;
+    const dialogScope = useDialogScope(__scopeAlertDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Overlay, { ...dialogScope, ...overlayProps, ref: forwardedRef });
+  }
+);
+AlertDialogOverlay$1.displayName = OVERLAY_NAME;
+var CONTENT_NAME = "AlertDialogContent";
+var [AlertDialogContentProvider, useAlertDialogContentContext] = createAlertDialogContext(CONTENT_NAME);
+var Slottable = /* @__PURE__ */ createSlottable("AlertDialogContent");
+var AlertDialogContent$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeAlertDialog, children, ...contentProps } = props;
+    const dialogScope = useDialogScope(__scopeAlertDialog);
+    const contentRef = reactExports.useRef(null);
+    const composedRefs = useComposedRefs(forwardedRef, contentRef);
+    const cancelRef = reactExports.useRef(null);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      WarningProvider,
+      {
+        contentName: CONTENT_NAME,
+        titleName: TITLE_NAME,
+        docsSlug: "alert-dialog",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogContentProvider, { scope: __scopeAlertDialog, cancelRef, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Content,
+          {
+            role: "alertdialog",
+            ...dialogScope,
+            ...contentProps,
+            ref: composedRefs,
+            onOpenAutoFocus: composeEventHandlers(contentProps.onOpenAutoFocus, (event) => {
+              var _a;
+              event.preventDefault();
+              (_a = cancelRef.current) == null ? void 0 : _a.focus({ preventScroll: true });
+            }),
+            onPointerDownOutside: (event) => event.preventDefault(),
+            onInteractOutside: (event) => event.preventDefault(),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Slottable, { children }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(DescriptionWarning, { contentRef })
+            ]
+          }
+        ) })
+      }
+    );
+  }
+);
+AlertDialogContent$1.displayName = CONTENT_NAME;
+var TITLE_NAME = "AlertDialogTitle";
+var AlertDialogTitle$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeAlertDialog, ...titleProps } = props;
+    const dialogScope = useDialogScope(__scopeAlertDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Title, { ...dialogScope, ...titleProps, ref: forwardedRef });
+  }
+);
+AlertDialogTitle$1.displayName = TITLE_NAME;
+var DESCRIPTION_NAME = "AlertDialogDescription";
+var AlertDialogDescription$1 = reactExports.forwardRef((props, forwardedRef) => {
+  const { __scopeAlertDialog, ...descriptionProps } = props;
+  const dialogScope = useDialogScope(__scopeAlertDialog);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Description, { ...dialogScope, ...descriptionProps, ref: forwardedRef });
+});
+AlertDialogDescription$1.displayName = DESCRIPTION_NAME;
+var ACTION_NAME = "AlertDialogAction";
+var AlertDialogAction$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeAlertDialog, ...actionProps } = props;
+    const dialogScope = useDialogScope(__scopeAlertDialog);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Close, { ...dialogScope, ...actionProps, ref: forwardedRef });
+  }
+);
+AlertDialogAction$1.displayName = ACTION_NAME;
+var CANCEL_NAME = "AlertDialogCancel";
+var AlertDialogCancel$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeAlertDialog, ...cancelProps } = props;
+    const { cancelRef } = useAlertDialogContentContext(CANCEL_NAME, __scopeAlertDialog);
+    const dialogScope = useDialogScope(__scopeAlertDialog);
+    const ref = useComposedRefs(forwardedRef, cancelRef);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Close, { ...dialogScope, ...cancelProps, ref });
+  }
+);
+AlertDialogCancel$1.displayName = CANCEL_NAME;
+var DescriptionWarning = ({ contentRef }) => {
+  const MESSAGE = `\`${CONTENT_NAME}\` requires a description for the component to be accessible for screen reader users.
+
+You can add a description to the \`${CONTENT_NAME}\` by passing a \`${DESCRIPTION_NAME}\` component as a child, which also benefits sighted users by adding visible context to the dialog.
+
+Alternatively, you can use your own component as a description by assigning it an \`id\` and passing the same value to the \`aria-describedby\` prop in \`${CONTENT_NAME}\`. If the description is confusing or duplicative for sighted users, you can use the \`@radix-ui/react-visually-hidden\` primitive as a wrapper around your description component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/alert-dialog`;
+  reactExports.useEffect(() => {
+    var _a;
+    const hasDescription = document.getElementById(
+      (_a = contentRef.current) == null ? void 0 : _a.getAttribute("aria-describedby")
+    );
+    if (!hasDescription) console.warn(MESSAGE);
+  }, [MESSAGE, contentRef]);
+  return null;
+};
+var Root2 = AlertDialog$1;
+var Portal2 = AlertDialogPortal$1;
+var Overlay2 = AlertDialogOverlay$1;
+var Content2 = AlertDialogContent$1;
+var Title2 = AlertDialogTitle$1;
+var Description2 = AlertDialogDescription$1;
+const AlertDialog = Root2;
+const AlertDialogPortal = Portal2;
+const AlertDialogOverlay = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  Overlay2,
+  {
+    className: cn$1(
+      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      className
+    ),
+    ...props,
+    ref
+  }
+));
+AlertDialogOverlay.displayName = Overlay2.displayName;
+const AlertDialogContent = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogPortal, { children: [
+  /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogOverlay, {}),
+  /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Content2,
+    {
+      ref,
+      className: cn$1(
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        className
+      ),
+      ...props
+    }
+  )
+] }));
+AlertDialogContent.displayName = Content2.displayName;
+const AlertDialogHeader = ({
+  className,
+  ...props
+}) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  "div",
+  {
+    className: cn$1(
+      "flex flex-col space-y-2 text-center sm:text-left",
+      className
+    ),
+    ...props
+  }
+);
+AlertDialogHeader.displayName = "AlertDialogHeader";
+const AlertDialogFooter = ({
+  className,
+  ...props
+}) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  "div",
+  {
+    className: cn$1(
+      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+      className
+    ),
+    ...props
+  }
+);
+AlertDialogFooter.displayName = "AlertDialogFooter";
+const AlertDialogTitle = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  Title2,
+  {
+    ref,
+    className: cn$1("text-lg font-semibold", className),
+    ...props
+  }
+));
+AlertDialogTitle.displayName = Title2.displayName;
+const AlertDialogDescription = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  Description2,
+  {
+    ref,
+    className: cn$1("text-sm text-muted-foreground", className),
+    ...props
+  }
+));
+AlertDialogDescription.displayName = Description2.displayName;
+const AlertDialogAction = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx("button", { ref, className: cn$1(buttonVariants(), className), ...props }));
+AlertDialogAction.displayName = "AlertDialogAction";
+const AlertDialogCancel = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  "button",
+  {
+    ref,
+    className: cn$1(
+      buttonVariants({ variant: "outline" }),
+      "mt-2 sm:mt-0",
+      className
+    ),
+    ...props
+  }
+));
+AlertDialogCancel.displayName = "AlertDialogCancel";
+const OrderCode = ({ code, className }) => {
+  var _a;
+  const [copied, setCopied] = reactExports.useState(false);
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      toast.success("Code copié !");
+      setTimeout(() => setCopied(false), 2e3);
+    } catch (err) {
+      toast.error("Erreur lors de la copie");
+    }
+  };
+  const formattedCode = ((_a = code.match(/.{1,2}/g)) == null ? void 0 : _a.join(" ")) || code;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: cn$1(
+        "inline-flex items-center gap-2 rounded-md bg-muted/50 px-2 py-1 text-sm font-medium",
+        className
+      ),
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-muted-foreground", children: "Code:" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono", children: formattedCode }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            onClick: handleCopy,
+            className: "ml-1 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary",
+            title: "Copier le code",
+            children: copied ? /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-3.5 w-3.5 text-green-500" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { className: "h-3.5 w-3.5" })
+          }
+        )
+      ]
+    }
+  );
+};
+const statusConfig = {
+  pending: {
+    label: "En attente",
+    className: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+  },
+  confirmed: {
+    label: "Confirmé",
+    className: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+  },
+  preparing: {
+    label: "En préparation",
+    className: "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+  },
+  ready: {
+    label: "Prêt",
+    className: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+  },
+  completed: {
+    label: "Terminé",
+    className: "bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200"
+  },
+  cancelled: {
+    label: "Annulé",
+    className: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+  }
+};
+const CancelConfirmDialog = ({
+  open,
+  onOpenChange,
+  onConfirm,
+  orderCode,
+  isLoading
+}) => /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { children: [
+  /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Annuler la commande" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogDescription, { className: "space-y-2", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Êtes-vous sûr de vouloir annuler cette commande ?" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(OrderCode, { code: orderCode }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-red-600 dark:text-red-400", children: "Cette action ne peut pas être annulée." })
+    ] })
+  ] }),
+  /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialogCancel,
+      {
+        disabled: isLoading,
+        onClick: () => onOpenChange(false),
+        children: "Annuler"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialogAction,
+      {
+        onClick: (e) => {
+          e.preventDefault();
+          onConfirm();
+        },
+        disabled: isLoading,
+        className: "bg-red-600 text-white hover:bg-red-700 dark:bg-red-900 dark:hover:bg-red-800",
+        children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Loader2, { className: "h-4 w-4 animate-spin" }) : "Confirmer l'annulation"
+      }
+    )
+  ] })
+] }) });
+const OrderList = () => {
+  const [orders, setOrders] = reactExports.useState([]);
+  const [page, setPage] = reactExports.useState(0);
+  const [loading, setLoading] = reactExports.useState(false);
+  const [hasMore, setHasMore] = reactExports.useState(true);
+  const [cancellingOrderId, setCancellingOrderId] = reactExports.useState(
+    null
+  );
+  const [confirmDialogOpen, setConfirmDialogOpen] = reactExports.useState(false);
+  const [selectedOrder, setSelectedOrder] = reactExports.useState(null);
+  const observer = reactExports.useRef(null);
+  const handleCancelOrder = async (order) => {
+    setSelectedOrder(order);
+    setConfirmDialogOpen(true);
+  };
+  const confirmCancelOrder = async () => {
+    if (!selectedOrder) return;
+    try {
+      setCancellingOrderId(selectedOrder.id);
+      const updatedOrder = await cancelOrder(selectedOrder.id);
+      setOrders(
+        (prevOrders) => prevOrders.map(
+          (order) => order.id === selectedOrder.id ? updatedOrder : order
+        )
+      );
+      toast.success("Commande annulée avec succès");
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Erreur lors de l'annulation"
+      );
+    } finally {
+      setCancellingOrderId(null);
+      setConfirmDialogOpen(false);
+      setSelectedOrder(null);
+    }
+  };
+  const lastOrderRef = reactExports.useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prev) => prev + 1);
+        }
+      });
+      if (node) {
+        observer.current.observe(node);
+      }
+    },
+    [loading, hasMore]
+  );
+  reactExports.useEffect(() => {
+    const loadOrders = async () => {
+      setLoading(true);
+      try {
+        const newOrders = await fetchOrders(page);
+        setOrders((prev) => [...prev, ...newOrders]);
+        setHasMore(newOrders.length === 5);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+        toast.error("Erreur lors du chargement des commandes");
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadOrders();
+  }, [page]);
+  if (orders.length === 0 && !loading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      motion.div,
+      {
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -10 },
+        className: "flex h-[400px] items-center justify-center rounded-lg border bg-surface dark:bg-surface-dark",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Aucune commande pour le moment" })
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      motion.div,
+      {
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -10 },
+        className: "space-y-4",
+        children: [
+          orders.map((order, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.div,
+            {
+              ref: index === orders.length - 1 ? lastOrderRef : null,
+              layout: true,
+              className: "rounded-lg border bg-surface p-4 dark:bg-surface-dark",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start justify-between", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium", children: order.product.name }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "span",
+                        {
+                          className: cn$1(
+                            "rounded-full px-2 py-0.5 text-xs font-medium",
+                            statusConfig[order.status].className
+                          ),
+                          children: statusConfig[order.status].label
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(OrderCode, { code: order.code }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-muted-foreground", children: [
+                      order.product.supermarket,
+                      " • ",
+                      order.quantity,
+                      " unité",
+                      order.quantity > 1 ? "s" : ""
+                    ] })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-right", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "font-medium", children: [
+                      order.totalPrice,
+                      " FCFA"
+                    ] }),
+                    order.status === "pending" && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      Button,
+                      {
+                        variant: "ghost",
+                        size: "sm",
+                        className: "mt-2 text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300 dark:hover:bg-red-950",
+                        onClick: () => handleCancelOrder(order),
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-4 w-4 mr-1" }),
+                          "Annuler"
+                        ]
+                      }
+                    )
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-4 space-y-2 text-sm", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground", children: [
+                    "Commandé le: ",
+                    order.orderDate
+                  ] }),
+                  order.estimatedPickupTime && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground", children: [
+                    "Retrait estimé: ",
+                    order.estimatedPickupTime
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground", children: [
+                    "Lieu de retrait: ",
+                    order.pickupLocation
+                  ] }),
+                  order.customerNotes && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-muted-foreground", children: [
+                    "Note: ",
+                    order.customerNotes
+                  ] })
+                ] })
+              ]
+            },
+            order.id
+          )),
+          loading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center py-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Loader2, { className: "h-6 w-6 animate-spin text-primary" }) })
+        ]
+      }
+    ),
+    selectedOrder && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      CancelConfirmDialog,
+      {
+        open: confirmDialogOpen,
+        onOpenChange: setConfirmDialogOpen,
+        onConfirm: confirmCancelOrder,
+        orderCode: selectedOrder.code,
+        isLoading: cancellingOrderId === selectedOrder.id
+      }
+    )
+  ] });
+};
+const OrderConfirmDialog = ({
+  open,
+  onOpenChange,
+  onConfirm,
+  orderDetails: { product, quantity, total, customerInfo },
+  isLoading
+}) => /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialog, { open, onOpenChange, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogContent, { className: "max-h-[90vh] overflow-y-auto", children: [
+  /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogHeader, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AlertDialogTitle, { children: "Confirmer la commande" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogDescription, { className: "space-y-4", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start gap-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "img",
+          {
+            src: product.image,
+            alt: product.name,
+            className: "h-20 w-20 rounded-md object-cover"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: product.name }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: product.supermarket }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-baseline gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm line-through text-muted-foreground", children: [
+              product.originalPrice,
+              " FCFA"
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-medium text-primary", children: [
+              product.clearancePrice,
+              " FCFA"
+            ] })
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "rounded-md bg-muted/50 p-3 text-sm", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "Détails de la commande :" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "mt-2 space-y-1 text-muted-foreground", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Quantité : ",
+            quantity
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Total : ",
+            total,
+            " FCFA"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• À retirer chez ",
+            product.supermarket
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Date d'expiration : ",
+            product.expiryDate
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Instructions de stockage : ",
+            product.storageInstructions
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "rounded-md bg-muted/50 p-3 text-sm", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-medium", children: "Informations client :" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("ul", { className: "mt-2 space-y-1 text-muted-foreground", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Nom : ",
+            customerInfo.name
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Téléphone : ",
+            customerInfo.phone
+          ] }),
+          customerInfo.needsDelivery && /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Adresse de livraison : ",
+            customerInfo.address
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("li", { children: [
+            "• Mode :",
+            " ",
+            customerInfo.needsDelivery ? "Livraison" : "Retrait en magasin"
+          ] })
+        ] })
+      ] })
+    ] })
+  ] }),
+  /* @__PURE__ */ jsxRuntimeExports.jsxs(AlertDialogFooter, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialogCancel,
+      {
+        disabled: isLoading,
+        onClick: () => onOpenChange(false),
+        children: "Annuler"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      AlertDialogAction,
+      {
+        onClick: (e) => {
+          e.preventDefault();
+          onConfirm();
+        },
+        disabled: isLoading,
+        className: "bg-primary text-primary-foreground hover:bg-primary/90",
+        children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(Loader2, { className: "h-4 w-4 animate-spin" }) : "Confirmer la commande"
+      }
+    )
+  ] })
+] }) });
+const Dialog = Root$3;
 const DialogPortal = Portal;
 const DialogOverlay = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
   Overlay,
   {
     ref,
-    className: cn(
+    className: cn$1(
       "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     ),
@@ -19323,7 +21003,7 @@ const DialogContent = reactExports.forwardRef(({ className, children, ...props }
     Content,
     {
       ref,
-      className: cn(
+      className: cn$1(
         "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
         className
       ),
@@ -19345,7 +21025,7 @@ const DialogHeader = ({
 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
   "div",
   {
-    className: cn(
+    className: cn$1(
       "flex flex-col space-y-1.5 text-center sm:text-left",
       className
     ),
@@ -19357,7 +21037,7 @@ const DialogTitle = reactExports.forwardRef(({ className, ...props }, ref) => /*
   Title,
   {
     ref,
-    className: cn(
+    className: cn$1(
       "text-lg font-semibold leading-none tracking-tight",
       className
     ),
@@ -19369,7 +21049,7 @@ const DialogDescription = reactExports.forwardRef(({ className, ...props }, ref)
   Description,
   {
     ref,
-    className: cn("text-sm text-muted-foreground", className),
+    className: cn$1("text-sm text-muted-foreground", className),
     ...props
   }
 ));
@@ -19380,7 +21060,7 @@ const Input = reactExports.forwardRef(
       "input",
       {
         type,
-        className: cn(
+        className: cn$1(
           "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
           className
         ),
@@ -19409,19 +21089,63 @@ var Label$1 = reactExports.forwardRef((props, forwardedRef) => {
   );
 });
 Label$1.displayName = NAME;
-var Root$1 = Label$1;
+var Root$2 = Label$1;
 const Label = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-  Root$1,
+  Root$2,
   {
     ref,
-    className: cn(
+    className: cn$1(
       "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
       className
     ),
     ...props
   }
 ));
-Label.displayName = Root$1.displayName;
+Label.displayName = Root$2.displayName;
+function usePrevious(value) {
+  const ref = reactExports.useRef({ value, previous: value });
+  return reactExports.useMemo(() => {
+    if (ref.current.value !== value) {
+      ref.current.previous = ref.current.value;
+      ref.current.value = value;
+    }
+    return ref.current.previous;
+  }, [value]);
+}
+function useSize(element) {
+  const [size, setSize] = reactExports.useState(void 0);
+  useLayoutEffect2(() => {
+    if (element) {
+      setSize({ width: element.offsetWidth, height: element.offsetHeight });
+      const resizeObserver = new ResizeObserver((entries) => {
+        if (!Array.isArray(entries)) {
+          return;
+        }
+        if (!entries.length) {
+          return;
+        }
+        const entry = entries[0];
+        let width;
+        let height;
+        if ("borderBoxSize" in entry) {
+          const borderSizeEntry = entry["borderBoxSize"];
+          const borderSize = Array.isArray(borderSizeEntry) ? borderSizeEntry[0] : borderSizeEntry;
+          width = borderSize["inlineSize"];
+          height = borderSize["blockSize"];
+        } else {
+          width = element.offsetWidth;
+          height = element.offsetHeight;
+        }
+        setSize({ width, height });
+      });
+      resizeObserver.observe(element, { box: "border-box" });
+      return () => resizeObserver.unobserve(element);
+    } else {
+      setSize(void 0);
+    }
+  }, [element]);
+  return size;
+}
 var CHECKBOX_NAME = "Checkbox";
 var [createCheckboxContext, createCheckboxScope] = createContextScope(CHECKBOX_NAME);
 var [CheckboxProvider, useCheckboxContext] = createCheckboxContext(CHECKBOX_NAME);
@@ -19465,7 +21189,7 @@ var Checkbox$1 = reactExports.forwardRef(
           role: "checkbox",
           "aria-checked": isIndeterminate(checked) ? "mixed" : checked,
           "aria-required": required,
-          "data-state": getState(checked),
+          "data-state": getState$1(checked),
           "data-disabled": disabled ? "" : void 0,
           disabled,
           value,
@@ -19484,7 +21208,7 @@ var Checkbox$1 = reactExports.forwardRef(
         }
       ),
       isFormControl && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        BubbleInput,
+        BubbleInput$1,
         {
           control: button,
           bubbles: !hasConsumerStoppedPropagationRef.current,
@@ -19510,7 +21234,7 @@ var CheckboxIndicator = reactExports.forwardRef(
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Presence, { present: forceMount || isIndeterminate(context.state) || context.state === true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Primitive.span,
       {
-        "data-state": getState(context.state),
+        "data-state": getState$1(context.state),
         "data-disabled": context.disabled ? "" : void 0,
         ...indicatorProps,
         ref: forwardedRef,
@@ -19520,7 +21244,7 @@ var CheckboxIndicator = reactExports.forwardRef(
   }
 );
 CheckboxIndicator.displayName = INDICATOR_NAME;
-var BubbleInput = (props) => {
+var BubbleInput$1 = (props) => {
   const { control, checked, bubbles = true, defaultChecked, ...inputProps } = props;
   const ref = reactExports.useRef(null);
   const prevChecked = usePrevious(checked);
@@ -19561,16 +21285,16 @@ var BubbleInput = (props) => {
 function isIndeterminate(checked) {
   return checked === "indeterminate";
 }
-function getState(checked) {
+function getState$1(checked) {
   return isIndeterminate(checked) ? "indeterminate" : checked ? "checked" : "unchecked";
 }
-var Root = Checkbox$1;
+var Root$1 = Checkbox$1;
 var Indicator = CheckboxIndicator;
 const Checkbox = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-  Root,
+  Root$1,
   {
     ref,
-    className: cn(
+    className: cn$1(
       "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
       className
     ),
@@ -19578,13 +21302,13 @@ const Checkbox = reactExports.forwardRef(({ className, ...props }, ref) => /* @_
     children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Indicator,
       {
-        className: cn("flex items-center justify-center text-current"),
+        className: cn$1("flex items-center justify-center text-current"),
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { className: "h-4 w-4" })
       }
     )
   }
 ));
-Checkbox.displayName = Root.displayName;
+Checkbox.displayName = Root$1.displayName;
 const STORAGE_KEY = "userOrderInfo";
 const loadUserInfo = () => {
   const savedInfo = localStorage.getItem(STORAGE_KEY);
@@ -19601,7 +21325,8 @@ const loadUserInfo = () => {
 const ProductDetails = ({
   product,
   onClose,
-  isOpen
+  isOpen,
+  onSubmitOrder
 }) => {
   var _a, _b;
   const [quantity, setQuantity] = reactExports.useState(1);
@@ -19616,15 +21341,12 @@ const ProductDetails = ({
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(orderForm));
     const orderDetails = {
-      product: product.name,
+      product,
       quantity,
       total: product.clearancePrice * quantity,
-      ...orderForm
+      customerInfo: orderForm
     };
-    alert(`Commande passée:
-${JSON.stringify(orderDetails, null, 2)}`);
-    onClose();
-    setQuantity(1);
+    onSubmitOrder(orderDetails);
   };
   const handleCheckboxChange = (checked) => {
     setOrderForm((prev) => ({ ...prev, needsDelivery: checked }));
@@ -19846,238 +21568,663 @@ ${JSON.stringify(orderDetails, null, 2)}`);
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-2 pt-2", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { variant: "outline", onClick: onClose, children: "Annuler" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: handleSubmitOrder, children: "Commander" })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: handleSubmitOrder, children: "Continuer" })
         ] })
       ] })
     ] })
   ] }) });
 };
-const ProductList = ({ onOrder }) => {
-  const [products, setProducts] = reactExports.useState([]);
-  const [page, setPage] = reactExports.useState(0);
-  const [loading, setLoading] = reactExports.useState(false);
-  const [hasMore, setHasMore] = reactExports.useState(true);
-  const observer = reactExports.useRef(null);
-  const lastProductRef = reactExports.useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPage((prev) => prev + 1);
+var SWITCH_NAME = "Switch";
+var [createSwitchContext, createSwitchScope] = createContextScope(SWITCH_NAME);
+var [SwitchProvider, useSwitchContext] = createSwitchContext(SWITCH_NAME);
+var Switch$1 = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const {
+      __scopeSwitch,
+      name,
+      checked: checkedProp,
+      defaultChecked,
+      required,
+      disabled,
+      value = "on",
+      onCheckedChange,
+      form,
+      ...switchProps
+    } = props;
+    const [button, setButton] = reactExports.useState(null);
+    const composedRefs = useComposedRefs(forwardedRef, (node) => setButton(node));
+    const hasConsumerStoppedPropagationRef = reactExports.useRef(false);
+    const isFormControl = button ? form || !!button.closest("form") : true;
+    const [checked = false, setChecked] = useControllableState({
+      prop: checkedProp,
+      defaultProp: defaultChecked,
+      onChange: onCheckedChange
+    });
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(SwitchProvider, { scope: __scopeSwitch, checked, disabled, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Primitive.button,
+        {
+          type: "button",
+          role: "switch",
+          "aria-checked": checked,
+          "aria-required": required,
+          "data-state": getState(checked),
+          "data-disabled": disabled ? "" : void 0,
+          disabled,
+          value,
+          ...switchProps,
+          ref: composedRefs,
+          onClick: composeEventHandlers(props.onClick, (event) => {
+            setChecked((prevChecked) => !prevChecked);
+            if (isFormControl) {
+              hasConsumerStoppedPropagationRef.current = event.isPropagationStopped();
+              if (!hasConsumerStoppedPropagationRef.current) event.stopPropagation();
+            }
+          })
         }
-      });
-      if (node) {
-        observer.current.observe(node);
+      ),
+      isFormControl && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        BubbleInput,
+        {
+          control: button,
+          bubbles: !hasConsumerStoppedPropagationRef.current,
+          name,
+          value,
+          checked,
+          required,
+          disabled,
+          form,
+          style: { transform: "translateX(-100%)" }
+        }
+      )
+    ] });
+  }
+);
+Switch$1.displayName = SWITCH_NAME;
+var THUMB_NAME = "SwitchThumb";
+var SwitchThumb = reactExports.forwardRef(
+  (props, forwardedRef) => {
+    const { __scopeSwitch, ...thumbProps } = props;
+    const context = useSwitchContext(THUMB_NAME, __scopeSwitch);
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Primitive.span,
+      {
+        "data-state": getState(context.checked),
+        "data-disabled": context.disabled ? "" : void 0,
+        ...thumbProps,
+        ref: forwardedRef
       }
-    },
-    [loading, hasMore]
-  );
+    );
+  }
+);
+SwitchThumb.displayName = THUMB_NAME;
+var BubbleInput = (props) => {
+  const { control, checked, bubbles = true, ...inputProps } = props;
+  const ref = reactExports.useRef(null);
+  const prevChecked = usePrevious(checked);
+  const controlSize = useSize(control);
   reactExports.useEffect(() => {
-    const loadProducts = async () => {
-      setLoading(true);
-      try {
-        const newProducts = await fetchProducts(page);
-        setProducts((prev) => [...prev, ...newProducts]);
-        setHasMore(newProducts.length === 10);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadProducts();
-  }, [page]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    motion.div,
+    const input = ref.current;
+    const inputProto = window.HTMLInputElement.prototype;
+    const descriptor = Object.getOwnPropertyDescriptor(inputProto, "checked");
+    const setChecked = descriptor.set;
+    if (prevChecked !== checked && setChecked) {
+      const event = new Event("click", { bubbles });
+      setChecked.call(input, checked);
+      input.dispatchEvent(event);
+    }
+  }, [prevChecked, checked, bubbles]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "input",
     {
-      initial: { opacity: 0, y: 10 },
-      animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: -10 },
-      className: "grid grid-cols-1 gap-4",
-      children: [
-        products.map((product, index) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          motion.div,
-          {
-            ref: index === products.length - 1 ? lastProductRef : null,
-            layout: true,
-            className: "group relative overflow-hidden rounded-lg border bg-surface p-3 transition-shadow hover:shadow-lg dark:bg-surface-dark",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-3", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "h-20 w-20 overflow-hidden rounded-md", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "img",
-                  {
-                    src: product.image,
-                    alt: product.name,
-                    className: "h-full w-full object-cover transition-transform group-hover:scale-105"
-                  }
-                ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-1 flex-col justify-between", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-semibold", children: product.name }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between mt-1", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-xs text-muted-foreground", children: product.supermarket }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary dark:text-primary-dark flex items-center gap-1", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(TrendingDown, { className: "h-3 w-3" }),
-                        product.discount,
-                        "%"
-                      ] })
-                    ] })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-2", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-xs line-through text-muted-foreground", children: [
-                        product.originalPrice,
-                        " FCFA"
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-sm font-bold text-primary dark:text-primary-dark", children: [
-                        product.clearancePrice,
-                        " FCFA"
-                      ] })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground", children: [
-                      "Expire le: ",
-                      product.expiryDate
-                    ] })
-                  ] })
-                ] })
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Button,
-                {
-                  className: "mt-2 w-full",
-                  size: "sm",
-                  onClick: () => onOrder(product),
-                  children: "Commander"
-                }
-              )
-            ]
-          },
-          product.id
-        )),
-        loading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center py-4", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Loader2, { className: "h-6 w-6 animate-spin text-primary" }) })
-      ]
+      type: "checkbox",
+      "aria-hidden": true,
+      defaultChecked: checked,
+      ...inputProps,
+      tabIndex: -1,
+      ref,
+      style: {
+        ...props.style,
+        ...controlSize,
+        position: "absolute",
+        pointerEvents: "none",
+        opacity: 0,
+        margin: 0
+      }
     }
   );
 };
-const OrderList = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    motion.div,
-    {
-      initial: { opacity: 0, y: 10 },
-      animate: { opacity: 1, y: 0 },
-      exit: { opacity: 0, y: -10 },
-      className: "flex h-[400px] items-center justify-center rounded-lg border bg-surface dark:bg-surface-dark",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Vos commandes récentes apparaîtront ici" })
+function getState(checked) {
+  return checked ? "checked" : "unchecked";
+}
+var Root = Switch$1;
+var Thumb = SwitchThumb;
+const Switch = reactExports.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+  Root,
+  {
+    className: cn$1(
+      "peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",
+      className
+    ),
+    ...props,
+    ref,
+    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Thumb,
+      {
+        className: cn$1(
+          "pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
+        )
+      }
+    )
+  }
+));
+Switch.displayName = Root.displayName;
+const NOTIFICATION_COUNT_KEY = "notification_count";
+const LAST_NOTIFICATIONS_KEY = "last_notifications";
+const checkNotificationPermission = async () => {
+  if (!("Notification" in window)) {
+    console.log(
+      "Ce navigateur ne prend pas en charge les notifications de bureau"
+    );
+    return false;
+  }
+  if (Notification.permission === "granted") {
+    return true;
+  }
+  if (Notification.permission !== "denied") {
+    const permission = await Notification.requestPermission();
+    return permission === "granted";
+  }
+  return false;
+};
+const getNotificationCount = () => {
+  return parseInt(localStorage.getItem(NOTIFICATION_COUNT_KEY) || "0", 10);
+};
+const incrementNotificationCount = () => {
+  const count2 = getNotificationCount();
+  localStorage.setItem(NOTIFICATION_COUNT_KEY, (count2 + 1).toString());
+};
+const resetNotificationCount = () => {
+  localStorage.setItem(NOTIFICATION_COUNT_KEY, "0");
+};
+const getLastNotifications = () => {
+  const notificationsJson = localStorage.getItem(LAST_NOTIFICATIONS_KEY);
+  return notificationsJson ? JSON.parse(notificationsJson) : [];
+};
+const storeNotification = (product) => {
+  const notifications = getLastNotifications();
+  const newNotification = {
+    id: Date.now().toString(),
+    product,
+    timestamp: Date.now()
+  };
+  notifications.unshift(newNotification);
+  if (notifications.length > 50) {
+    notifications.pop();
+  }
+  localStorage.setItem(LAST_NOTIFICATIONS_KEY, JSON.stringify(notifications));
+  incrementNotificationCount();
+};
+const ALERTS_STORAGE_KEY = "product_alerts";
+const saveAlert = (alert2) => {
+  const alerts = getAlerts();
+  const existingAlertIndex = alerts.findIndex((a) => a.id === alert2.id);
+  if (existingAlertIndex >= 0) {
+    alerts[existingAlertIndex] = alert2;
+  } else {
+    alerts.push(alert2);
+  }
+  localStorage.setItem(ALERTS_STORAGE_KEY, JSON.stringify(alerts));
+};
+const getAlerts = () => {
+  const alertsJson = localStorage.getItem(ALERTS_STORAGE_KEY);
+  return alertsJson ? JSON.parse(alertsJson) : [];
+};
+const deleteAlert = (alertId) => {
+  const alerts = getAlerts().filter((alert2) => alert2.id !== alertId);
+  localStorage.setItem(ALERTS_STORAGE_KEY, JSON.stringify(alerts));
+};
+const toggleAlert = (alertId) => {
+  const alerts = getAlerts();
+  const alert2 = alerts.find((a) => a.id === alertId);
+  if (alert2) {
+    alert2.isActive = !alert2.isActive;
+    saveAlert(alert2);
+  }
+};
+const checkProductAlerts = async (product) => {
+  const hasPermission = await checkNotificationPermission();
+  if (!hasPermission) return;
+  const alerts = getAlerts().filter((alert2) => alert2.isActive);
+  for (const alert2 of alerts) {
+    const matchesProduct = product.name.toLowerCase().includes(alert2.productName.toLowerCase());
+    const matchesSupermarket = alert2.supermarket === "any" || product.supermarket === alert2.supermarket;
+    const belowThreshold = product.clearancePrice <= alert2.priceThreshold;
+    if (matchesProduct && matchesSupermarket && belowThreshold) {
+      storeNotification(product);
+      const notification = new Notification("Nouveau produit en promotion !", {
+        body: `${product.name} est disponible à ${product.clearancePrice} FCFA chez ${product.supermarket}`,
+        icon: product.image,
+        tag: product.id,
+        // Prevent duplicate notifications
+        requireInteraction: true
+        // Keep notification visible until user interacts
+      });
+      notification.onclick = () => {
+        window.focus();
+        window.dispatchEvent(
+          new CustomEvent("showProduct", { detail: product })
+        );
+      };
+      toast.info(`${product.name} correspond à votre alerte de prix !`, {
+        description: `Disponible à ${product.clearancePrice} FCFA chez ${product.supermarket}`,
+        duration: 5e3,
+        action: {
+          label: "Voir",
+          onClick: () => {
+            window.dispatchEvent(
+              new CustomEvent("showProduct", { detail: product })
+            );
+          }
+        }
+      });
     }
-  );
+  }
+};
+const simulateNewProduct = () => {
+  const mockProduct = {
+    id: Date.now().toString(),
+    name: "Yaourt Nature Bio",
+    description: "Yaourt nature biologique",
+    image: "https://picsum.photos/seed/1/200/200",
+    supermarket: "Carrefour",
+    originalPrice: 1500,
+    clearancePrice: 750,
+    discount: 50,
+    expiryDate: new Date(Date.now() + 24 * 60 * 60 * 1e3).toLocaleDateString(),
+    stock: 10,
+    supermarketLocation: {
+      address: "123 Rue du Commerce",
+      distance: 1.2
+    },
+    storageInstructions: "À conserver au frais",
+    nutritionalInfo: {
+      calories: 150,
+      protein: 5,
+      carbs: 12,
+      fat: 8
+    },
+    allergens: ["Lait"],
+    ingredients: ["Lait entier", "Ferments lactiques"]
+  };
+  checkProductAlerts(mockProduct);
+};
+const startSimulation = () => {
+  setTimeout(simulateNewProduct, 3e4);
+};
+const subscribeToProductUpdates = (onNewProduct) => {
+  const eventSource = new EventSource("/api/products/stream");
+  eventSource.onmessage = (event) => {
+    const product = JSON.parse(event.data);
+    onNewProduct(product);
+    checkProductAlerts(product);
+  };
+  eventSource.onerror = () => {
+    console.error("Erreur de connexion aux mises à jour produits");
+    eventSource.close();
+    setTimeout(() => subscribeToProductUpdates(onNewProduct), 5e3);
+  };
+  startSimulation();
+  return () => eventSource.close();
+};
+const AlertManager = () => {
+  const [alerts, setAlerts] = reactExports.useState([]);
+  const [isAddDialogOpen, setIsAddDialogOpen] = reactExports.useState(false);
+  const [newAlert, setNewAlert] = reactExports.useState({
+    productName: "",
+    category: "",
+    supermarket: "any",
+    priceThreshold: 0,
+    isActive: true
+  });
+  reactExports.useEffect(() => {
+    setAlerts(getAlerts());
+  }, []);
+  const handleAddAlert = () => {
+    if (!newAlert.productName || !newAlert.priceThreshold) {
+      return;
+    }
+    const alert2 = {
+      id: Date.now().toString(),
+      productName: newAlert.productName,
+      category: newAlert.category || "Tous",
+      supermarket: newAlert.supermarket || "any",
+      priceThreshold: newAlert.priceThreshold,
+      isActive: true
+    };
+    saveAlert(alert2);
+    setAlerts(getAlerts());
+    setIsAddDialogOpen(false);
+    setNewAlert({
+      productName: "",
+      category: "",
+      supermarket: "any",
+      priceThreshold: 0,
+      isActive: true
+    });
+  };
+  const handleDeleteAlert = (alertId) => {
+    deleteAlert(alertId);
+    setAlerts(getAlerts());
+  };
+  const handleToggleAlert = (alertId) => {
+    toggleAlert(alertId);
+    setAlerts(getAlerts());
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold", children: "Alertes de prix" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        Button,
+        {
+          onClick: () => setIsAddDialogOpen(true),
+          size: "sm",
+          className: "flex items-center gap-2",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { className: "h-4 w-4" }),
+            "Nouvelle alerte"
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+      alerts.map((alert2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "flex items-center justify-between rounded-lg border bg-card p-4",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Bell, { className: "h-4 w-4 text-muted-foreground" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-medium", children: alert2.productName })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm text-muted-foreground", children: [
+                alert2.category,
+                " •",
+                " ",
+                alert2.supermarket === "any" ? "Tous les magasins" : alert2.supermarket
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-sm", children: [
+                "Seuil de prix:",
+                " ",
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-medium", children: [
+                  alert2.priceThreshold,
+                  " FCFA"
+                ] })
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Switch,
+                {
+                  checked: alert2.isActive,
+                  onCheckedChange: () => handleToggleAlert(alert2.id),
+                  "aria-label": "Toggle alert"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button,
+                {
+                  variant: "ghost",
+                  size: "icon",
+                  onClick: () => handleDeleteAlert(alert2.id),
+                  className: "text-destructive hover:text-destructive/90",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { className: "h-4 w-4" })
+                }
+              )
+            ] })
+          ]
+        },
+        alert2.id
+      )),
+      alerts.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "rounded-lg border border-dashed p-8 text-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Bell, { className: "mx-auto h-8 w-8 text-muted-foreground" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "mt-2 font-medium", children: "Aucune alerte" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-muted-foreground", children: "Créez une alerte pour être notifié des promotions sur vos produits préférés." })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Dialog, { open: isAddDialogOpen, onOpenChange: setIsAddDialogOpen, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(DialogContent, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(DialogHeader, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(DialogTitle, { children: "Nouvelle alerte" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { htmlFor: "productName", children: "Nom du produit" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "productName",
+              value: newAlert.productName,
+              onChange: (e) => setNewAlert((prev) => ({
+                ...prev,
+                productName: e.target.value
+              })),
+              placeholder: "Ex: Yaourt Nature"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { htmlFor: "category", children: "Catégorie (optionnel)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "category",
+              value: newAlert.category,
+              onChange: (e) => setNewAlert((prev) => ({ ...prev, category: e.target.value })),
+              placeholder: "Ex: Produits Laitiers"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { htmlFor: "supermarket", children: "Supermarché" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "select",
+            {
+              id: "supermarket",
+              className: "w-full rounded-md border border-input bg-background px-3 py-2",
+              value: newAlert.supermarket,
+              onChange: (e) => setNewAlert((prev) => ({
+                ...prev,
+                supermarket: e.target.value
+              })),
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "any", children: "Tous les magasins" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Carrefour", children: "Carrefour" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Auchan", children: "Auchan" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Casino", children: "Casino" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "Leader Price", children: "Leader Price" })
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Label, { htmlFor: "priceThreshold", children: "Seuil de prix (FCFA)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Input,
+            {
+              id: "priceThreshold",
+              type: "number",
+              min: "0",
+              value: newAlert.priceThreshold,
+              onChange: (e) => setNewAlert((prev) => ({
+                ...prev,
+                priceThreshold: Number(e.target.value)
+              })),
+              placeholder: "Ex: 500"
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              variant: "outline",
+              onClick: () => setIsAddDialogOpen(false),
+              children: "Annuler"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button, { onClick: handleAddAlert, children: "Créer l'alerte" })
+        ] })
+      ] })
+    ] }) })
+  ] });
 };
 const App = () => {
   const [activeTab, setActiveTab] = reactExports.useState(
     "products"
   );
   const [selectedProduct, setSelectedProduct] = reactExports.useState(null);
+  const [orderDetails, setOrderDetails] = reactExports.useState(null);
+  const [isOrdering, setIsOrdering] = reactExports.useState(false);
+  const [notificationCount, setNotificationCount] = reactExports.useState(0);
   const { theme, setTheme } = useTheme();
+  reactExports.useEffect(() => {
+    const unsubscribe = subscribeToProductUpdates((product) => {
+      console.log("New product received:", product);
+    });
+    const handleShowProduct = (event) => {
+      setSelectedProduct(event.detail);
+      setActiveTab("products");
+    };
+    window.addEventListener("showProduct", handleShowProduct);
+    const updateNotificationCount = () => {
+      setNotificationCount(getNotificationCount());
+    };
+    updateNotificationCount();
+    window.addEventListener("storage", updateNotificationCount);
+    return () => {
+      unsubscribe();
+      window.removeEventListener(
+        "showProduct",
+        handleShowProduct
+      );
+      window.removeEventListener("storage", updateNotificationCount);
+    };
+  }, []);
+  reactExports.useEffect(() => {
+    if (activeTab === "alerts") {
+      resetNotificationCount();
+      setNotificationCount(0);
+    }
+  }, [activeTab]);
   const handleOrder = (product) => {
     setSelectedProduct(product);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(AppLayout, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex min-h-full flex-col bg-background text-foreground", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "sticky top-0 z-50 w-full border-b bg-surface/80 backdrop-blur supports-[backdrop-filter]:bg-surface/60", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex h-12 items-center px-2", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "mr-2 text-lg font-bold", children: "Bolo Stock" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "flex flex-1 items-center space-x-2 pl-4", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
+  const handleOrderDetailsSubmit = (details) => {
+    setOrderDetails(details);
+    setSelectedProduct(null);
+  };
+  const handleConfirmOrder = async () => {
+    if (!orderDetails) return;
+    setIsOrdering(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1e3));
+      toast.success("Commande confirmée avec succès !");
+      setActiveTab("products");
+    } catch (error) {
+      toast.error("Erreur lors de la commande");
+    } finally {
+      setIsOrdering(false);
+      setOrderDetails(null);
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(AppLayout, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex min-h-full flex-col bg-background text-foreground", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: "sticky top-0 z-50 w-full border-b bg-surface/80 backdrop-blur supports-[backdrop-filter]:bg-surface/60", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex h-12 items-center px-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "mr-2 text-lg font-bold", children: "Bolo Stock" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "flex flex-1 items-center space-x-2 pl-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              variant: activeTab === "products" ? "default" : "ghost",
+              onClick: () => setActiveTab("products"),
+              className: "h-8 px-3",
+              size: "sm",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(ShoppingCart, { className: "mr-2 h-4 w-4" })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Button,
+            {
+              variant: activeTab === "alerts" ? "default" : "ghost",
+              onClick: () => setActiveTab("alerts"),
+              className: "h-8 px-3 relative",
+              size: "sm",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Bell, { className: "mr-2 h-4 w-4" }),
+                notificationCount > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-medium text-primary-foreground flex items-center justify-center", children: notificationCount })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button,
+            {
+              variant: activeTab === "orders" ? "default" : "ghost",
+              onClick: () => setActiveTab("orders"),
+              className: "h-8 px-3",
+              size: "sm",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Package, { className: "mr-2 h-4 w-4" })
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
           Button,
           {
-            variant: activeTab === "products" ? "default" : "ghost",
-            onClick: () => setActiveTab("products"),
-            className: "h-8 px-3",
-            size: "sm",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(ShoppingCart, { className: "mr-2 h-4 w-4" })
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button,
-          {
-            variant: activeTab === "orders" ? "default" : "ghost",
-            onClick: () => setActiveTab("orders"),
-            className: "h-8 px-3",
-            size: "sm",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Package, { className: "mr-2 h-4 w-4" })
+            variant: "ghost",
+            size: "icon",
+            onClick: () => setTheme(theme === "dark" ? "light" : "dark"),
+            className: "h-8 w-8",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Sun, { className: "h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Moon, { className: "absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" })
+            ]
           }
         )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Button,
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1 overflow-auto py-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AnimatePresence, { mode: "wait", children: [
+        activeTab === "products" && /* @__PURE__ */ jsxRuntimeExports.jsx(ProductList, { onOrder: handleOrder }),
+        activeTab === "alerts" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0, y: 10 },
+            animate: { opacity: 1, y: 0 },
+            exit: { opacity: 0, y: -10 },
+            className: "container mx-auto px-4",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(AlertManager, {})
+          }
+        ),
+        activeTab === "orders" && /* @__PURE__ */ jsxRuntimeExports.jsx(OrderList, {})
+      ] }) }),
+      selectedProduct && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ProductDetails,
         {
-          variant: "ghost",
-          size: "icon",
-          onClick: () => setTheme(theme === "dark" ? "light" : "dark"),
-          className: "h-8 w-8",
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Sun, { className: "h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Moon, { className: "absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" })
-          ]
-        }
-      )
-    ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "flex-1 overflow-auto py-2", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(AnimatePresence, { mode: "wait", children: [
-      activeTab === "products" && /* @__PURE__ */ jsxRuntimeExports.jsx(ProductList, { onOrder: handleOrder }),
-      activeTab === "alerts" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        motion.div,
-        {
-          initial: { opacity: 0, y: 10 },
-          animate: { opacity: 1, y: 0 },
-          exit: { opacity: 0, y: -10 },
-          className: "space-y-3",
-          children: mockAlerts.map((alert2) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              className: "flex items-center justify-between rounded-lg border bg-surface p-3 dark:bg-surface-dark",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-1", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-sm font-medium", children: alert2.productName }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs text-muted-foreground", children: [
-                    alert2.category,
-                    " • ",
-                    alert2.supermarket
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-xs", children: [
-                    "Seuil de prix:",
-                    " ",
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-medium", children: [
-                      "$",
-                      alert2.priceThreshold
-                    ] })
-                  ] })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Switch,
-                  {
-                    checked: alert2.isActive,
-                    onCheckedChange: () => {
-                    },
-                    "aria-label": "Activer/Désactiver l'alerte"
-                  }
-                )
-              ]
-            },
-            alert2.id
-          ))
+          product: selectedProduct,
+          isOpen: !!selectedProduct,
+          onClose: () => setSelectedProduct(null),
+          onSubmitOrder: handleOrderDetailsSubmit
         }
       ),
-      activeTab === "orders" && /* @__PURE__ */ jsxRuntimeExports.jsx(OrderList, {})
-    ] }) }),
-    selectedProduct && /* @__PURE__ */ jsxRuntimeExports.jsx(
-      ProductDetails,
-      {
-        product: selectedProduct,
-        isOpen: !!selectedProduct,
-        onClose: () => setSelectedProduct(null)
-      }
-    )
-  ] }) });
+      orderDetails && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        OrderConfirmDialog,
+        {
+          open: !!orderDetails,
+          onOpenChange: (open) => !open && setOrderDetails(null),
+          onConfirm: handleConfirmOrder,
+          orderDetails,
+          isLoading: isOrdering
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, { richColors: true, position: "top-center" })
+  ] });
 };
 client.createRoot(document.getElementById("root")).render(
   /* @__PURE__ */ jsxRuntimeExports.jsx(React.StrictMode, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeProvider, { defaultTheme: "light", storageKey: "bolo-ui-theme", children: /* @__PURE__ */ jsxRuntimeExports.jsx(App, {}) }) })

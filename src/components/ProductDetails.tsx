@@ -18,6 +18,7 @@ interface ProductDetailsProps {
   product: Product;
   onClose: () => void;
   isOpen: boolean;
+  onSubmitOrder: (orderDetails: OrderDetails) => void;
 }
 
 interface OrderForm {
@@ -25,6 +26,13 @@ interface OrderForm {
   phone: string;
   needsDelivery: boolean;
   address: string;
+}
+
+export interface OrderDetails {
+  product: Product;
+  quantity: number;
+  total: number;
+  customerInfo: OrderForm;
 }
 
 const STORAGE_KEY = "userOrderInfo";
@@ -46,6 +54,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
   product,
   onClose,
   isOpen,
+  onSubmitOrder,
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [orderForm, setOrderForm] = useState<OrderForm>(loadUserInfo);
@@ -68,16 +77,14 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
     // Save user info to localStorage
     localStorage.setItem(STORAGE_KEY, JSON.stringify(orderForm));
 
-    const orderDetails = {
-      product: product.name,
+    const orderDetails: OrderDetails = {
+      product,
       quantity,
       total: product.clearancePrice * quantity,
-      ...orderForm,
+      customerInfo: orderForm,
     };
 
-    alert(`Commande passée:\n${JSON.stringify(orderDetails, null, 2)}`);
-    onClose();
-    setQuantity(1);
+    onSubmitOrder(orderDetails);
   };
 
   const handleCheckboxChange = (checked: boolean) => {
@@ -318,7 +325,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({
               <Button variant="outline" onClick={onClose}>
                 Annuler
               </Button>
-              <Button onClick={handleSubmitOrder}>Commander</Button>
+              <Button onClick={handleSubmitOrder}>Continuer</Button>
             </div>
           </div>
         </div>
